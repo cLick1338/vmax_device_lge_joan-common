@@ -150,9 +150,6 @@ persist.dpm.feature=0
 # Factory reset partition
 ro.frp.pst=/dev/block/platform/soc/1da4000.ufshc/by-name/frp
 
-# Fingerprint
-persist.vendor.fingerprint.type=rear
-
 # HDR
 ro.vendor.display.hdr.config=/vendor/etc/hdr_tm_config.xml
 vendor.display.hdr.config=/vendor/etc/hdr_tm_config.xml

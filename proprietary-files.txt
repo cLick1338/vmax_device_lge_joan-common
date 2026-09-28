@@ -639,6 +639,8 @@ vendor/lib64/vendor.qti.esepowermanager@1.0.so|126bc511ee16c6a9753fb420379432577
 vendor/lib64/vendor.qti.esepowermanager@1.1.so|279861b447f8df3149ee1c3f58d27a0b854c2df7
 
 # Fingerprint
+vendor/bin/hw/vendor.lge.hardware.biometrics.fingerprint@2.1-service
+vendor/etc/init/vendor.lge.hardware.biometrics.fingerprint@2.1-service.rc
 vendor/lib64/hw/fingerprint.msm8998.so
 
 # FM - from phoenix_sprout - phoenix_lgu_kr-user 11 RKQ1.201123.002 8998110220201 release-keys

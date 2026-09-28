@@ -151,8 +151,7 @@ PRODUCT_PACKAGES += \
 
 # Fingerprint
 PRODUCT_PACKAGES += \
-    LGEPocketMode \
-    android.hardware.biometrics.fingerprint-service.lineage
+    LGEPocketMode
 
 # FM packages
 PRODUCT_PACKAGES += \
