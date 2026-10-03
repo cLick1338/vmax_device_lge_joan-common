@@ -45,7 +45,7 @@ allow shell vmaxdisplay_exec:file rx_file_perms;
 # Settings edits calibration atomically and reads the ROM default.
 allow system_app vmaxdisplay_data_file:file create_file_perms;
 
-# Settings holds a POSIX lock while calibrating. The daemon confirms bypass and raw brightness.
+# Settings holds a POSIX lock while calibrating. The daemon confirms the preview revision and raw brightness.
 allow vmaxdisplay vmaxdisplay_data_file:file lock;
 allow vmaxdisplay vmaxdisplay_data_file:dir { write add_name };
 type vmaxdisplay_status_file, file_type, data_file_type;

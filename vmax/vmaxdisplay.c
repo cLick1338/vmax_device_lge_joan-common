@@ -75,8 +75,11 @@ static size_t g_num_cal_points = 0;
 
 static uint32_t (*curve_table)[PGC_LUT_ENTRIES];
 static uint32_t g_max_level = 0;
-/* A process-held Settings lock bypasses correction without changing saved state. */
+/* A process-held Settings lock previews correction without changing saved state. */
 static int g_calibrating = 0;
+static int g_preview_value;
+static uint32_t g_preview_revision;
+static uint32_t g_preview_curve[PGC_LUT_ENTRIES];
 
 static void die(const char *msg) {
     LOGE("%s: %s", msg, strerror(errno));
@@ -179,7 +182,7 @@ static void use_identity(uint32_t max_level) {
 
 static void load_calibration(uint32_t max_level) {//priority: disabled > custom > default > identity
     struct stat st;
-    if (g_calibrating || stat(DISABLED_FLAG_PATH, &st) == 0) {
+    if (stat(DISABLED_FLAG_PATH, &st) == 0) {
         LOGD("calibration disabled by user (%s present)", DISABLED_FLAG_PATH);
         use_identity(max_level);
         return;
@@ -274,9 +277,10 @@ static void get_curve_for_level(uint32_t level, uint32_t **c0, uint32_t **c1, ui
     if (level > g_max_level)
         level = g_max_level;
 
-    *c0 = curve_table[level];
-    *c1 = curve_table[level];
-    *c2 = curve_table[level];
+    /* Preview overrides the persistent toggle only while the editor owns its lock. */
+    *c0 = g_calibrating ? g_preview_curve : curve_table[level];
+    *c1 = *c0;
+    *c2 = *c0;
 }
 
 static uint32_t g_hw_curve[3][PGC_LUT_ENTRIES]; //last curves written to the hardware
@@ -387,8 +391,7 @@ static int drain_inotify_once(int fd) {//reads inotify queue, returns 1 if relev
         for (char *p = buf; p < buf + n; ) {
             struct inotify_event *ev = (struct inotify_event *)p;
             if (ev->len && (strcmp(ev->name, CAL_NAME) == 0 ||
-                            strcmp(ev->name, DISABLED_NAME) == 0 ||
-                            strcmp(ev->name, SESSION_NAME) == 0))
+                            strcmp(ev->name, DISABLED_NAME) == 0))
                 relevant = 1;
             p += sizeof(*ev) + ev->len;
         }
@@ -647,21 +650,34 @@ static int calibration_session(void) {
     if (fd < 0) return 0;
     struct flock lock = { .l_type = F_RDLCK, .l_whence = SEEK_SET, .l_start = 0, .l_len = 0 };
     int active = fcntl(fd, F_GETLK, &lock) == 0 && lock.l_type == F_WRLCK;
-    char token[33] = {0};
+    char record[80] = {0}, token[33] = {0};
+    uint32_t revision = 0;
+    int value = 0, consumed = 0;
     if (active) {
-        ssize_t n = read(fd, token, 32);
-        active = n == 32 && strspn(token, "0123456789abcdef") == 32;
+        ssize_t n = read(fd, record, sizeof(record) - 1);
+        active = n > 0 && sscanf(record, "%32[0123456789abcdef] %u %d%n",
+                token, &revision, &value, &consumed) == 3
+                && strlen(token) == 32 && revision <= INT32_MAX
+                && value >= -255 && value <= 255
+                && consumed == n - 1 && record[consumed] == '\n';
     }
     close(fd);
-    if (active) memcpy(g_session_token, token, sizeof(token));
+    if (active) {
+        if (!g_calibrating || value != g_preview_value)
+            build_lut_for_value(value * 4, g_preview_curve);
+        memcpy(g_session_token, token, sizeof(token));
+        g_preview_revision = revision;
+        g_preview_value = value;
+    }
     return active;
 }
 
 static void calibration_status(uint32_t max_level, uint32_t level) {
     /* The token prevents an old acknowledgement from activating a new editor session. */
-    static char last_reply[80];
-    char reply[80];
-    int len = snprintf(reply, sizeof(reply), "%s %u %u\n", g_session_token, max_level, level);
+    static char last_reply[100];
+    char reply[100];
+    int len = snprintf(reply, sizeof(reply), "%s %u %u %u %d\n", g_session_token,
+            max_level, level, g_preview_revision, g_preview_value);
     if (strcmp(last_reply, reply) == 0) return;
     int fd = open(STATUS_PATH, O_WRONLY | O_CREAT | O_TRUNC | O_CLOEXEC | O_NOFOLLOW, 0644);
     if (fd < 0) {
@@ -735,21 +751,24 @@ static int run_daemon(void) { //main function
         if (pfds[0].revents)
             read_bl_event_counter(bl_event_fd); /* re-arm on a real event */
 
-        if ((pfds[1].revents & POLLIN) && drain_inotify(cal_inotify_fd)) {
-            LOGD("calibration changed, reloading");
-            reload(g_max_level);
-            last_applied_level = -1; /* force reapply with new table */
-        }
+        int calibration_changed = (pfds[1].revents & POLLIN)
+                && drain_inotify(cal_inotify_fd);
 
         if (pfds[2].revents & POLLIN)
             drain_inotify_once(bl_inotify_fd); /* only the wakeup matters; level is read below */
 
+        uint32_t previous_revision = g_preview_revision;
+        char previous_token[33];
+        memcpy(previous_token, g_session_token, sizeof(previous_token));
         int calibrating = calibration_session();
-        if (calibrating != g_calibrating) {
-            g_calibrating = calibrating;
-            reload(g_max_level);
-            last_applied_level = -1;
-        }
+        int session_changed = calibrating != g_calibrating;
+        g_calibrating = calibrating;
+        if (!calibrating && (calibration_changed || session_changed))
+            reload(g_max_level); /* Saved changes are deferred until the editor releases its lock. */
+        if (session_changed || (!calibrating && calibration_changed)
+                || (calibrating && (previous_revision != g_preview_revision
+                        || strcmp(previous_token, g_session_token) != 0)))
+            last_applied_level = -1; /* Acknowledge a request only after its curve is applied. */
 
         if (read_sysfs_uint(BL_BRIGHTNESS_PATH, &level) < 0) {
             LOGW("brightness read failed, skipping");

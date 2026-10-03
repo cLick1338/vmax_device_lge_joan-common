@@ -36,7 +36,7 @@ static inline int __android_log_print(int p, const char *t, const char *f, ...) 
         # Capture the applied curve in place of the hardware ioctl.
         source = source.replace("int rc = ioctl(fb_fd, MSMFB_MDP_PP, &pp);", f"""
         FILE *capture = fopen("{cls.root / 'curves'}", "a");
-        fprintf(capture, "%u\\n", c0[1]);
+        fprintf(capture, "%u %u\\n", c0[0], c0[1]);
         fclose(capture);
         int rc = 0;
         """)
@@ -63,6 +63,20 @@ public class SessionTest {
                     throw new AssertionError("Second editor opened");
                 } catch (IOException expected) { }
             }
+            status = session.preview(15);
+            if (status[2] != 1 || status[3] != 15) throw new AssertionError();
+            status = session.preview(0);
+            if (status[2] != 2 || status[3] != 0) throw new AssertionError();
+            status = session.preview(1); // Same identity curve, but a distinct acknowledgement.
+            if (status[2] != 3 || status[3] != 1) throw new AssertionError();
+            status = session.preview(-15);
+            if (status[2] != 4 || status[3] != -15) throw new AssertionError();
+            try {
+                session.preview(256);
+                throw new AssertionError("Accepted invalid preview");
+            } catch (IOException expected) { }
+            status = session.preview(30);
+            if (status[2] != 5 || status[3] != 30) throw new AssertionError();
             System.out.println("ready");
             System.out.flush();
             System.in.read();
@@ -109,19 +123,34 @@ public class SessionTest {
     def wait_curve(self, value):
         path = self.root / "curves"
         self.wait_for(lambda: path.exists()
-                      and path.read_text().splitlines()[-1:] == [str(value)])
+                      and path.read_text().splitlines()[-1:] == ["0 " + str(value)])
 
     def begin(self, token="a" * 32):
         self.session = (self.root / "data/calibration.session").open("w")
         fcntl.lockf(self.session, fcntl.LOCK_EX | fcntl.LOCK_NB)
-        self.session.write(token)
+        self.token = token
+        self.revision = 0
+        self.session.write(f"{token} {0:010d} {0:+04d}\n")
         self.session.flush()
-        status = self.root / "data/calibration.status"
-        self.wait_for(lambda: status.exists() and status.read_text() == token + " 511 102\n")
+        self.wait_status(0, 0)
         self.wait_curve(1)
+
+    def wait_status(self, revision, value, raw=102):
+        status = self.root / "data/calibration.status"
+        reply = f"{self.token} 511 {raw} {revision} {value}\n"
+        self.wait_for(lambda: status.exists() and status.read_text() == reply)
+
+    def preview(self, value, curve):
+        self.revision += 1
+        self.session.seek(0)
+        self.session.write(f"{self.token} {self.revision:010d} {value:+04d}\n")
+        self.session.flush()
+        self.wait_status(self.revision, value)
+        self.wait_curve(curve)
 
     def test_lock_release_restores_without_a_file_event(self):
         self.begin()
+        self.preview(30, 120)
         # Like process death: release without deleting or modifying the session file.
         fcntl.lockf(self.session, fcntl.LOCK_UN)
         self.wait_curve(60)
@@ -131,6 +160,7 @@ public class SessionTest {
         (self.root / "data/disabled").write_text("")
         self.wait_curve(1)
         self.begin()
+        self.preview(30, 120)
         self.session.close()
         time.sleep(0.35)
         self.wait_curve(1)
@@ -138,11 +168,12 @@ public class SessionTest {
 
     def test_save_is_deferred_until_lock_released(self):
         self.begin()
+        self.preview(15, 60)
         temporary = self.root / "data/new.tmp"
         temporary.write_text("0 30\n100 30\n")
         temporary.replace(self.root / "data/calibration.txt")
         time.sleep(0.15)
-        self.wait_curve(1)
+        self.wait_curve(60)
         self.session.close()
         self.wait_curve(120)
 
@@ -150,17 +181,58 @@ public class SessionTest {
         self.begin()
         (self.root / "brightness").write_text("256\n")
         status = self.root / "data/calibration.status"
-        self.wait_for(lambda: status.read_text() == "a" * 32 + " 511 256\n")
+        self.wait_for(lambda: status.read_text() == "a" * 32 + " 511 256 0 0\n")
         self.session.close()
         self.wait_curve(60)
         (self.root / "brightness").write_text("102\n")
         self.begin("b" * 32)
 
     def test_stale_session_file_does_not_bypass_correction(self):
-        (self.root / "data/calibration.session").write_text("c" * 32)
+        (self.root / "data/calibration.session").write_text("c" * 32 + " 0000000001 +030\n")
         time.sleep(0.15)
         self.wait_curve(60)
         self.assertFalse((self.root / "data/calibration.status").exists())
+
+    def test_live_preview_preserves_black_and_saved_data(self):
+        saved = self.root / "data/calibration.txt"
+        saved.write_text("0 15\n100 15\n")
+        original = saved.read_bytes()
+        defaults = (self.root / "default").read_bytes()
+        self.begin()
+        self.preview(15, 60)
+        self.preview(16, 64)
+        self.preview(0, 1)
+        self.preview(1, 1)
+        self.preview(-15, 0)
+        self.assertEqual(saved.read_bytes(), original)
+        self.assertEqual((self.root / "default").read_bytes(), defaults)
+        self.assertEqual((self.root / "brightness").read_text(), "102\n")
+        self.session.close()
+        self.wait_curve(60)
+
+    def test_rapid_preview_requests_acknowledge_final_value(self):
+        self.begin()
+        for value in range(2, 31):
+            self.revision += 1
+            self.session.seek(0)
+            self.session.write(f"{self.token} {self.revision:010d} {value:+04d}\n")
+            self.session.flush()
+        self.wait_status(self.revision, 30)
+        self.wait_curve(120)
+        self.assertFalse((self.root / "data/calibration.txt").exists())
+        self.session.close()
+        self.wait_curve(60)
+
+    def test_actual_settings_session_normal_exit_restores_gamma(self):
+        with subprocess.Popen([self.java, "-cp", str(self.root),
+                               "com.android.settings.display.SessionTest"],
+                              stdin=subprocess.PIPE, stdout=subprocess.PIPE,
+                              stderr=subprocess.PIPE) as editor:
+            self.assertEqual(editor.stdout.readline(), b"ready\n")
+            self.wait_curve(120)
+            editor.communicate(input=b"\n", timeout=3)
+            self.assertEqual(editor.returncode, 0)
+            self.wait_curve(60)
 
     def test_actual_settings_session_process_death_restores_gamma(self):
         with subprocess.Popen([self.java, "-cp", str(self.root),
@@ -169,10 +241,10 @@ public class SessionTest {
                               stderr=subprocess.PIPE) as editor:
             try:
                 self.assertEqual(editor.stdout.readline(), b"ready\n")
-                self.wait_curve(1)
+                self.wait_curve(120)
                 # A rejected second editor must not release the first editor's POSIX lock.
                 time.sleep(0.35)
-                self.wait_curve(1)
+                self.wait_curve(120)
                 editor.kill()
                 editor.wait(timeout=3)
                 self.wait_curve(60)
