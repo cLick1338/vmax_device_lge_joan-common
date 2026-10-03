@@ -16,6 +16,9 @@
   -->
 
 <resources>
+    <!-- The vmaxdisplay daemon supports enabling/disabling gamma correction. -->
+    <bool name="config_showGammaCorrection">true</bool>
+
 
     <!-- The number of vibration intensity levels supported by the device.
          Note that this should correspond to the ability to vary the vibration amplitude, with
@@ -32,5 +35,9 @@
          should be either LOW (1) or HIGH (3).
     -->
     <integer name="config_vibration_supported_intensity_levels">3</integer>
+
+    <!-- Keep UI scale constant across the resolutions supported by vmaxdisplay. -->
+    <integer name="config_screenResolutionBaseWidth">1440</integer>
+    <integer name="config_screenResolutionBaseDensity">540</integer>
 
 </resources>

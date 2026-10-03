@@ -405,6 +405,12 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     android.hardware.vibrator-service.lge
 
+# Vmax
+PRODUCT_PACKAGES += \
+    vmaxdisplay
+PRODUCT_COPY_FILES += \
+    device/lge/joan-common/vmax/default_calibration.txt:$(TARGET_COPY_OUT_VENDOR)/etc/vmaxdisplay/default_calibration.txt
+
 # Wifi
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/wifi/p2p_supplicant_overlay.conf:$(TARGET_COPY_OUT_VENDOR)/etc/wifi/p2p_supplicant_overlay.conf \

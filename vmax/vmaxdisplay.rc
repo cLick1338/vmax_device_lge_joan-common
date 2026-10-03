@@ -1,0 +1,25 @@
+# Installed to /vendor/etc/init/vmaxdisplay.rc via Android.bp
+
+service vmaxdisplay /vendor/bin/vmaxdisplay
+    class late_start
+    user system
+    group system graphics media_rw
+    seclabel u:r:vmaxdisplay:s0
+    disabled
+
+# Replay the shared Settings/CLI choice once Android services are ready.
+service vmaxdisplay-resolution /system/bin/sh -c "exec /vendor/bin/vmaxdisplay resolution restore"
+    class late_start
+    user shell
+    group shell
+    seclabel u:r:shell:s0
+    disabled
+    oneshot
+
+on post-fs-data
+    mkdir /data/vendor/vmaxdisplay 0775 system shell
+    restorecon_recursive /data/vendor/vmaxdisplay
+
+on property:sys.boot_completed=1
+    start vmaxdisplay-resolution
+    start vmaxdisplay

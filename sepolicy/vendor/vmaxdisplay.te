@@ -1,0 +1,54 @@
+type vmaxdisplay, domain;
+type vmaxdisplay_exec, exec_type, file_type, vendor_file_type;
+type vmaxdisplay_data_file, file_type, data_file_type;
+type vmaxdisplay_disabled_file, file_type, data_file_type;
+
+# The persistent toggle flag has a separate label from calibration data.
+type_transition system_app vmaxdisplay_data_file:file vmaxdisplay_disabled_file "disabled";
+type_transition shell vmaxdisplay_data_file:file vmaxdisplay_disabled_file "disabled";
+allow system_app vmaxdisplay_data_file:dir { r_dir_perms write add_name remove_name watch };
+allow system_app vmaxdisplay_disabled_file:file create_file_perms;
+allow shell vmaxdisplay_disabled_file:file create_file_perms;
+allow vmaxdisplay vmaxdisplay_disabled_file:file r_file_perms;
+
+init_daemon_domain(vmaxdisplay)
+
+# For /dev/graphics/fb0 MSMFB_MDP_PP ioctl access.
+allow vmaxdisplay graphics_device:dir search;
+allow vmaxdisplay graphics_device:chr_file rw_file_perms;
+
+# For bl_event from /sys/class/graphics/fb0
+allow vmaxdisplay sysfs_graphics:dir search;
+r_dir_file(vmaxdisplay, sysfs_graphics)
+allow vmaxdisplay sysfs_leds:dir search;
+r_dir_file(vmaxdisplay, sysfs_leds)
+
+# The daemon's own calibration/state directory. Read-only for the
+# daemon, plus inotify watch on the dir for live reload.
+allow vmaxdisplay vmaxdisplay_data_file:dir { r_dir_perms watch };
+allow vmaxdisplay vmaxdisplay_data_file:file r_file_perms;
+
+# ROM calibration uses vendor_configs_file, the shared read-only configuration type.
+
+# --- Command mode: shell runs `/vendor/bin/vmaxdisplay <path>|disable` ---
+
+# Shell writes calibration/disabled files into the daemon's data dir.
+# This is core -> custom vendor-declared type, not vendor -> core.
+allow shell vmaxdisplay_data_file:dir rw_dir_perms;
+allow shell vmaxdisplay_data_file:file create_file_perms;
+allow vendor_init vmaxdisplay_data_file:dir { create setattr getattr search write add_name relabelto };
+
+# Shell must be able to execute the binary (runs in the shell domain,
+# no transition to vmaxdisplay).
+allow shell vmaxdisplay_exec:file rx_file_perms;
+
+# Settings edits calibration atomically and reads the ROM default.
+allow system_app vmaxdisplay_data_file:file create_file_perms;
+
+# Settings holds a POSIX lock while calibrating. The daemon confirms bypass and raw brightness.
+allow vmaxdisplay vmaxdisplay_data_file:file lock;
+allow vmaxdisplay vmaxdisplay_data_file:dir { write add_name };
+type vmaxdisplay_status_file, file_type, data_file_type;
+type_transition vmaxdisplay vmaxdisplay_data_file:file vmaxdisplay_status_file "calibration.status";
+allow vmaxdisplay vmaxdisplay_status_file:file create_file_perms;
+allow system_app vmaxdisplay_status_file:file r_file_perms;

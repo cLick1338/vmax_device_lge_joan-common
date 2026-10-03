@@ -1,0 +1,11 @@
+cc_binary {
+    name: "vmaxdisplay",
+    srcs: ["vmaxdisplay.c"],
+    shared_libs: ["liblog"],
+    cflags: [
+        "-Wall",
+        "-Werror",
+    ],    
+    vendor: true,
+    init_rc: ["vmaxdisplay.rc"],
+}

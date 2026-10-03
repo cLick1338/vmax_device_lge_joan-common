@@ -27,3 +27,12 @@
 
 /(vendor|system/vendor)/bin/init\.baseband\.sh									u:object_r:qti_init_shell_exec:s0
 /(vendor|system/vendor)/bin/init\.joan\.hdmi\.sh								u:object_r:qti_init_shell_exec:s0
+
+#Vmax
+#pgc - Panel Gamma Correction
+/vendor/bin/vmaxdisplay              u:object_r:vmaxdisplay_exec:s0
+/data/vendor/vmaxdisplay(/.*)?    u:object_r:vmaxdisplay_data_file:s0
+/data/vendor/vmaxdisplay/disabled    u:object_r:vmaxdisplay_disabled_file:s0
+/vendor/etc/vmaxdisplay/default_calibration\.txt    u:object_r:vendor_configs_file:s0
+
+/data/vendor/vmaxdisplay/calibration\.status    u:object_r:vmaxdisplay_status_file:s0
