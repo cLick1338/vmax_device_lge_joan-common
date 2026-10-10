@@ -21,3 +21,7 @@
 #define HIFI_DAC_BACKEND "QUAT_MI2S_RX"
 #define HIFI_DAC_INTERFACE "QUAT_MI2S_RX"
 #define ESS_HIFI_MODE_MIXER_PATH "ess-hifi-mode"
+
+// DAC link format controls; the HAL only programs known backends, not HIFI_DAC_BACKEND
+#define HIFI_DAC_SAMPLE_RATE_CTL "QUAT_MI2S_RX SampleRate"
+#define HIFI_DAC_FORMAT_CTL "QUAT_MI2S_RX Format"
