@@ -3273,11 +3273,23 @@
         <ctl name="QUAT_TDM_RX_0 Data Format" value="Gen Compr" />
     </path>
 
-    <!-- DoP on the Quad DAC: the HAL routes only the DoP stream here (DAC is clock master) -->
+    <!-- Quad DAC as clock master: the HAL routes DoP alone here, or 352.8 kHz PCM mixed with the rest -->
     <path name="headphones-dop">
         <ctl name="QUAT_TDM SlotNumber" value="Two" />
         <ctl name="QUAT_TDM SlotWidth" value="32" />
         <ctl name="QUAT_TDM_RX_0 Channels" value="Two" />
+    </path>
+
+    <path name="audio-ull-playback hifi-dop">
+        <ctl name="QUAT_TDM_RX_0 Audio Mixer MultiMedia3" value="1" />
+    </path>
+
+    <path name="deep-buffer-playback hifi-dop">
+        <ctl name="QUAT_TDM_RX_0 Audio Mixer MultiMedia1" value="1" />
+    </path>
+
+    <path name="low-latency-playback hifi-dop">
+        <ctl name="QUAT_TDM_RX_0 Audio Mixer MultiMedia5" value="1" />
     </path>
 
     <path name="compress-offload-playback hifi-dop">
