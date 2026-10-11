@@ -624,6 +624,15 @@
     <ctl name="QUAT_MI2S_RX Audio Mixer MultiMedia16" value="0" />
     <!-- QUAT MI2S HEADPHONE -->
     <ctl name="QUAT_TDM_RX_0 Audio Mixer MultiMedia2" value="0" />
+    <ctl name="QUAT_TDM_RX_0 Audio Mixer MultiMedia4" value="0" />
+    <ctl name="QUAT_TDM_RX_0 Audio Mixer MultiMedia7" value="0" />
+    <ctl name="QUAT_TDM_RX_0 Audio Mixer MultiMedia10" value="0" />
+    <ctl name="QUAT_TDM_RX_0 Audio Mixer MultiMedia11" value="0" />
+    <ctl name="QUAT_TDM_RX_0 Audio Mixer MultiMedia12" value="0" />
+    <ctl name="QUAT_TDM_RX_0 Audio Mixer MultiMedia13" value="0" />
+    <ctl name="QUAT_TDM_RX_0 Audio Mixer MultiMedia14" value="0" />
+    <ctl name="QUAT_TDM_RX_0 Audio Mixer MultiMedia15" value="0" />
+    <ctl name="QUAT_TDM_RX_0 Audio Mixer MultiMedia16" value="0" />
     <ctl name="QUAT_TDM_RX_0 Data Format" value="0" />
     <!-- initial gian of headphones-hifi-dac -->
     <ctl name="Es9018 Master Volume" value="0" />
@@ -3262,6 +3271,49 @@
         <ctl name="QUAT_MI2S_RX Audio Mixer MultiMedia7" value="0" />
         <ctl name="QUAT_TDM_RX_0 Audio Mixer MultiMedia2" value="1" />
         <ctl name="QUAT_TDM_RX_0 Data Format" value="Gen Compr" />
+    </path>
+
+    <!-- DoP on the Quad DAC: the HAL routes only the DoP stream here (DAC is clock master) -->
+    <path name="headphones-dop">
+        <ctl name="QUAT_TDM SlotNumber" value="Two" />
+        <ctl name="QUAT_TDM SlotWidth" value="32" />
+        <ctl name="QUAT_TDM_RX_0 Channels" value="Two" />
+    </path>
+
+    <path name="compress-offload-playback hifi-dop">
+        <ctl name="QUAT_TDM_RX_0 Audio Mixer MultiMedia4" value="1" />
+    </path>
+
+    <path name="compress-offload-playback2 hifi-dop">
+        <ctl name="QUAT_TDM_RX_0 Audio Mixer MultiMedia7" value="1" />
+    </path>
+
+    <path name="compress-offload-playback3 hifi-dop">
+        <ctl name="QUAT_TDM_RX_0 Audio Mixer MultiMedia10" value="1" />
+    </path>
+
+    <path name="compress-offload-playback4 hifi-dop">
+        <ctl name="QUAT_TDM_RX_0 Audio Mixer MultiMedia11" value="1" />
+    </path>
+
+    <path name="compress-offload-playback5 hifi-dop">
+        <ctl name="QUAT_TDM_RX_0 Audio Mixer MultiMedia12" value="1" />
+    </path>
+
+    <path name="compress-offload-playback6 hifi-dop">
+        <ctl name="QUAT_TDM_RX_0 Audio Mixer MultiMedia13" value="1" />
+    </path>
+
+    <path name="compress-offload-playback7 hifi-dop">
+        <ctl name="QUAT_TDM_RX_0 Audio Mixer MultiMedia14" value="1" />
+    </path>
+
+    <path name="compress-offload-playback8 hifi-dop">
+        <ctl name="QUAT_TDM_RX_0 Audio Mixer MultiMedia15" value="1" />
+    </path>
+
+    <path name="compress-offload-playback9 hifi-dop">
+        <ctl name="QUAT_TDM_RX_0 Audio Mixer MultiMedia16" value="1" />
     </path>
 
     <!-- QUAT MI2S HEADPHONE ends -->

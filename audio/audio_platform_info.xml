@@ -115,6 +115,7 @@
         <device name="SND_DEVICE_LGE_OUT_HEADPHONES_HIFI_DACDOP" backend="QUAT_TDM_RX_0" interface="QUAT_TDM_RX_0"/>
         <device name="SND_DEVICE_LGE_OUT_HEADPHONES_HIFI_DACDOP_ADVANCED" backend="QUAT_TDM_RX_0" interface="QUAT_TDM_RX_0"/>
         <device name="SND_DEVICE_LGE_OUT_HEADPHONES_HIFI_DACDOP_AUX" backend="QUAT_TDM_RX_0" interface="QUAT_TDM_RX_0"/>
+        <device name="SND_DEVICE_OUT_HEADPHONES_DOP" backend="hifi-dop" interface="QUAT_TDM_RX_0"/>
         <device name="SND_DEVICE_OUT_VOICE_SPEAKER_AND_VOICE_HEADPHONES" backend="voice-speaker-and-voice-headphones" interface="TERT_MI2S_RX-and-SLIMBUS_6_RX"/>
     </backend_names>
     <microphone_characteristics>
