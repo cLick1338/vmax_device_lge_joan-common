@@ -3,4 +3,5 @@ get_prop(system_server, {
     exported_camera_prop
     userspace_reboot_exported_prop
     userspace_reboot_config_prop
+    vendor_audio_prop
 });
