@@ -3197,58 +3197,58 @@
 
 <!-- QUAT MI2S HEADPHONE begins -->
 
-    <path name="audio-ull-playback QUAT_MI2S_RX">
+    <path name="audio-ull-playback hifi-dac">
         <ctl name="QUAT_MI2S_RX Audio Mixer MultiMedia3" value="1" />
     </path>
 
-    <path name="deep-buffer-playback QUAT_MI2S_RX">
+    <path name="deep-buffer-playback hifi-dac">
         <ctl name="QUAT_MI2S_RX Audio Mixer MultiMedia1" value="1" />
     </path>
 
-    <path name="low-latency-playback QUAT_MI2S_RX">
+    <path name="low-latency-playback hifi-dac">
         <ctl name="QUAT_MI2S_RX Audio Mixer MultiMedia5" value="1" />
     </path>
 
-    <path name="compress-offload-playback QUAT_MI2S_RX">
+    <path name="compress-offload-playback hifi-dac">
         <ctl name="QUAT_MI2S_RX Audio Mixer MultiMedia4" value="1" />
     </path>
 
-    <path name="compress-offload-playback2 QUAT_MI2S_RX">
+    <path name="compress-offload-playback2 hifi-dac">
         <ctl name="QUAT_MI2S_RX Audio Mixer MultiMedia7" value="1" />
     </path>
 
-    <path name="compress-offload-playback3 QUAT_MI2S_RX">
+    <path name="compress-offload-playback3 hifi-dac">
         <ctl name="QUAT_MI2S_RX Audio Mixer MultiMedia10" value="1" />
     </path>
 
-    <path name="compress-offload-playback4 QUAT_MI2S_RX">
+    <path name="compress-offload-playback4 hifi-dac">
         <ctl name="QUAT_MI2S_RX Audio Mixer MultiMedia11" value="1" />
     </path>
 
-    <path name="compress-offload-playback5 QUAT_MI2S_RX">
+    <path name="compress-offload-playback5 hifi-dac">
         <ctl name="QUAT_MI2S_RX Audio Mixer MultiMedia12" value="1" />
     </path>
 
-    <path name="compress-offload-playback6 QUAT_MI2S_RX">
+    <path name="compress-offload-playback6 hifi-dac">
         <ctl name="QUAT_MI2S_RX Audio Mixer MultiMedia13" value="1" />
     </path>
 
-    <path name="compress-offload-playback7 QUAT_MI2S_RX">
+    <path name="compress-offload-playback7 hifi-dac">
         <ctl name="QUAT_MI2S_RX Audio Mixer MultiMedia14" value="1" />
     </path>
 
-    <path name="compress-offload-playback8 QUAT_MI2S_RX">
+    <path name="compress-offload-playback8 hifi-dac">
         <ctl name="QUAT_MI2S_RX Audio Mixer MultiMedia15" value="1" />
     </path>
 
-    <path name="compress-offload-playback9 QUAT_MI2S_RX">
+    <path name="compress-offload-playback9 hifi-dac">
         <ctl name="QUAT_MI2S_RX Audio Mixer MultiMedia16" value="1" />
     </path>
 
-    <path name="incall-music QUAT_MI2S_RX">
+    <path name="incall-music hifi-dac">
         <ctl name="Incall_Music Audio Mixer MultiMedia1" value="1" />
     </path>
-    <path name="incall_music_uplink QUAT_MI2S_RX">
+    <path name="incall_music_uplink hifi-dac">
         <ctl name="Incall_Music Audio Mixer MultiMedia2" value="1" />
     </path>
     <path name="incall_music_uplink2 headphones tert-mi2s-headphones">
@@ -3465,57 +3465,57 @@
     </path>
 
     <path name="deep-buffer-playback speaker-and-headphones-dac">
-        <path name="deep-buffer-playback QUAT_MI2S_RX" />
+        <path name="deep-buffer-playback hifi-dac" />
 	<path name="deep-buffer-playback speaker" />
     </path>
 
     <path name="low-latency-playback speaker-and-headphones-dac">
-        <path name="low-latency-playback QUAT_MI2S_RX" />
+        <path name="low-latency-playback hifi-dac" />
         <path name="low-latency-playback speaker" />
     </path>
 
     <path name="compress-offload-playback speaker-and-headphones-dac">
-        <path name="compress-offload-playback QUAT_MI2S_RX" />
+        <path name="compress-offload-playback hifi-dac" />
         <path name="compress-offload-playback speaker" />
     </path>
 
     <path name="compress-offload-playback2 speaker-and-headphones-dac">
-        <path name="compress-offload-playback2 QUAT_MI2S_RX" />
+        <path name="compress-offload-playback2 hifi-dac" />
         <path name="compress-offload-playback2 speaker" />
     </path>
 
     <path name="compress-offload-playback3 speaker-and-headphones-dac">
-        <path name="compress-offload-playback3 QUAT_MI2S_RX" />
+        <path name="compress-offload-playback3 hifi-dac" />
         <path name="compress-offload-playback3 speaker" />
     </path>
 
     <path name="compress-offload-playback4 speaker-and-headphones-dac">
-        <path name="compress-offload-playback4 QUAT_MI2S_RX" />
+        <path name="compress-offload-playback4 hifi-dac" />
         <path name="compress-offload-playback4 speaker" />
     </path>
 
     <path name="compress-offload-playback5 speaker-and-headphones-dac">
-        <path name="compress-offload-playback5 QUAT_MI2S_RX" />
+        <path name="compress-offload-playback5 hifi-dac" />
         <path name="compress-offload-playback5 speaker" />
     </path>
 
     <path name="compress-offload-playback6 speaker-and-headphones-dac">
-        <path name="compress-offload-playback6 QUAT_MI2S_RX" />
+        <path name="compress-offload-playback6 hifi-dac" />
         <path name="compress-offload-playback6 speaker" />
     </path>
 
     <path name="compress-offload-playback7 speaker-and-headphones-dac">
-        <path name="compress-offload-playback7 QUAT_MI2S_RX" />
+        <path name="compress-offload-playback7 hifi-dac" />
         <path name="compress-offload-playback7 speaker" />
     </path>
 
     <path name="compress-offload-playback8 speaker-and-headphones-dac">
-        <path name="compress-offload-playback8 QUAT_MI2S_RX" />
+        <path name="compress-offload-playback8 hifi-dac" />
         <path name="compress-offload-playback8 speaker" />
     </path>
 
     <path name="compress-offload-playback9 speaker-and-headphones-dac">
-        <path name="compress-offload-playback9 QUAT_MI2S_RX" />
+        <path name="compress-offload-playback9 hifi-dac" />
         <path name="compress-offload-playback9 speaker" />
     </path>
 
@@ -3539,7 +3539,7 @@
     </path>
 
     <path name="audio-ull-playback speaker-and-headphones-dac">
-        <path name="audio-ull-playback QUAT_MI2S_RX" />
+        <path name="audio-ull-playback hifi-dac" />
         <path name="audio-ull-playback speaker" />
     </path>
 
