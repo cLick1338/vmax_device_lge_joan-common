@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- //Vmax -->
+<resources>
+    <!-- Placeholder, never resolves -->
+    <string name="stats_lineage_url" translatable="false">https://stats.vmax.invalid/api/v1/stats</string>
+</resources>
