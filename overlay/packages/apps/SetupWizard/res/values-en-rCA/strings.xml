@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- //Vmax -->
+<resources>
+    <string name="os_name" translatable="false">Vmax</string>
+    <string name="setup_services">Vmax features</string>
+</resources>

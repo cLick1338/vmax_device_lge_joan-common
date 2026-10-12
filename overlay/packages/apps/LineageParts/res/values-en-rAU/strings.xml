@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- //Vmax -->
+<resources>
+    <string name="lineageparts_title">Vmax Settings</string>
+    <string name="privacy_settings_category" translatable="false">Vmax</string>
+    <string name="egg_title" translatable="false">Vmax Easter Egg</string>
+</resources>
