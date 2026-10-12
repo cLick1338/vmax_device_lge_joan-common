@@ -39,5 +39,7 @@
     <!-- Keep UI scale constant across the resolutions supported by vmaxdisplay. -->
     <integer name="config_screenResolutionBaseWidth">1440</integer>
     <integer name="config_screenResolutionBaseDensity">540</integer>
+    <!-- Display size slider: default density follows the active resolution. -->
+    <integer name="display_density_base_width">@integer/config_screenResolutionBaseWidth</integer>
 
 </resources>

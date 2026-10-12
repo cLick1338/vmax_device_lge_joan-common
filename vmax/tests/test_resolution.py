@@ -38,13 +38,25 @@ with (root / 'commands').open('a') as log:
 failure = root / 'fail'
 if failure.exists() and args[:len(json.loads(failure.read_text()))] == json.loads(failure.read_text()):
     sys.exit(1)
-state = root / 'saved'
+files = {'user_selected_resolution': root / 'saved', 'user_selected_density': root / 'density_state'}
+wm_density = root / 'wm_density'
 if args[:2] == ['settings', 'get']:
-    assert args[2:] == ['global', 'user_selected_resolution']
+    state = files[args[3]]
     print(state.read_text() if state.exists() else 'null')
 elif args[:2] == ['settings', 'put']:
-    assert args[2:4] == ['global', 'user_selected_resolution']
-    state.write_text(args[4])
+    files[args[3]].write_text(args[4])
+elif args == ['window', 'density']:
+    # Physical 540 until something overrides it, like the real shell command.
+    print('Physical density: 540')
+    if wm_density.exists():
+        print('Override density: ' + wm_density.read_text())
+elif args == ['window', 'size']:
+    width = (root / 'wm_width').read_text() if (root / 'wm_width').exists() else '1440'
+    print('Physical size: ' + width + 'x2880')
+elif args[:2] == ['window', 'density']:
+    wm_density.write_text(args[2])
+elif args[:2] == ['display', 'set-user-preferred-display-mode']:
+    (root / 'wm_width').write_text(args[2])
 elif args[0] not in ('display', 'window'):
     sys.exit(2)
 """)
@@ -64,7 +76,7 @@ elif args[0] not in ('display', 'window'):
         cls.temp.cleanup()
 
     def setUp(self):
-        for name in ("saved", "commands", "fail", "legacy/resolution"):
+        for name in ("saved", "commands", "fail", "legacy/resolution", "density_state", "wm_density", "wm_width"):
             (self.root / name).unlink(missing_ok=True)
         (self.root / "legacy").mkdir(exist_ok=True)
 
@@ -88,25 +100,27 @@ elif args[0] not in ('display', 'window'):
                 self.assertEqual((self.root / "saved").read_text(), f"{width}x{height}")
                 (self.root / "commands").unlink()
                 self.run_cli("restore")
-                self.assertEqual(self.commands(), [
-                    ["settings", "get", "global", "user_selected_resolution"],
-                    ["display", "set-user-preferred-display-mode", width, height, "0", "0"],
-                    ["window", "density", density],
-                ])
+                commands = self.commands()
+                self.assertEqual(commands[0], ["settings", "get", "global", "user_selected_resolution"])
+                self.assertIn(["display", "set-user-preferred-display-mode", width, height, "0", "0"],
+                              commands)
+                self.assertIn(["window", "density", density], commands)
 
     def test_settings_selection_overrides_stale_cli_file(self):
         (self.root / "legacy/resolution").write_text("qhd\n")
         (self.root / "saved").write_text("720x1440")  # Settings.Global.putString
         self.run_cli("restore")
-        self.assertEqual(self.commands()[1][2:4], ["720", "1440"])
-        self.assertEqual(self.commands()[2], ["window", "density", "270"])
+        self.assertIn(["display", "set-user-preferred-display-mode", "720", "1440", "0", "0"],
+                      self.commands())
+        self.assertIn(["window", "density", "270"], self.commands())
 
     def test_cli_selection_overrides_settings_selection(self):
         (self.root / "saved").write_text("720x1440")
         self.run_cli("fhd")
         self.run_cli("restore")
-        self.assertEqual(self.commands()[-2][2:4], ["1080", "2160"])
-        self.assertEqual(self.commands()[-1], ["window", "density", "405"])
+        commands = self.commands()
+        self.assertEqual(commands[-3][2:4], ["1080", "2160"])
+        self.assertEqual(commands[-2], ["window", "density", "405"])
 
     def test_legacy_file_migrates_to_shared_setting(self):
         (self.root / "legacy/resolution").write_text("fhd\n")
@@ -116,6 +130,46 @@ elif args[0] not in ('display', 'window'):
     def test_no_saved_selection_does_not_change_display(self):
         self.run_cli("restore")
         self.assertEqual(len(self.commands()), 1)
+
+    def wm_density(self):
+        return (self.root / "wm_density").read_text()
+
+    def test_custom_density_is_scaled_and_survives_round_trips_without_drift(self):
+        (self.root / "wm_density").write_text("450")  # user-set at QHD
+        for _ in range(5):
+            self.run_cli("fhd")
+            self.assertEqual(self.wm_density(), "338")  # 337.5 rounds up
+            self.run_cli("hd")
+            self.assertEqual(self.wm_density(), "225")
+            self.run_cli("qhd")
+            self.assertEqual(self.wm_density(), "450")
+
+    def test_density_changed_by_user_between_switches_becomes_new_base(self):
+        self.run_cli("fhd")
+        self.assertEqual(self.wm_density(), "405")
+        (self.root / "wm_density").write_text("360")  # Display size changed at FHD
+        self.run_cli("hd")
+        self.assertEqual(self.wm_density(), "240")
+        self.run_cli("qhd")
+        self.assertEqual(self.wm_density(), "480")
+
+    def test_restore_keeps_user_density_set_since_last_switch(self):
+        self.run_cli("fhd")
+        (self.root / "wm_density").write_text("360")
+        (self.root / "wm_width").write_text("1440")  # boot-time width must not be trusted
+        self.run_cli("restore")
+        self.assertEqual(self.wm_density(), "360")
+
+    def test_first_switch_adopts_existing_density_at_current_width(self):
+        (self.root / "wm_width").write_text("1080")
+        (self.root / "wm_density").write_text("405")  # applied by an older build
+        self.run_cli("hd")
+        self.assertEqual(self.wm_density(), "270")
+
+    def test_failed_density_state_save_reports_failure(self):
+        (self.root / "fail").write_text(json.dumps(["settings", "put", "global", "user_selected_density"]))
+        self.run_cli("hd", success=False)
+        self.assertFalse((self.root / "saved").exists())
 
     def test_invalid_saved_setting_does_not_fall_back_to_stale_file(self):
         for value in ("720x2880", "720x1440 extra", ""):

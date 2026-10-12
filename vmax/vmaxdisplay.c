@@ -11,7 +11,7 @@
    /vendor/bin/vmaxdisplay default      Revert to the ROM default calibration.
    /vendor/bin/vmaxdisplay disable      Force an identity LUT (no correction).
    /vendor/bin/vmaxdisplay resolution <hd|fhd|qhd>   Set preferred panel resolution (720|1080|1440 also accepted).
-   Density is scaled from 540 at QHD. Changes are saved and restored after boot completes.
+   Density keeps the user's UI size across modes (custom wm density is honoured, 540 at QHD by default). Changes are saved and restored after boot completes.
    /vendor/bin/vmaxdisplay resolution restore       Reapply the shared Settings/CLI choice (used by init).
    /vendor/bin/vmaxdisplay              (no args) Run as the daemon itself; started by init.
  The daemon watches its data dir with inotify and reloads in-process.
@@ -57,6 +57,8 @@ static const char *BL_MAX_BRIGHTNESS_PATH = "/sys/class/leds/lcd-backlight/max_b
 #define RESOLUTION_PATH    CAL_DIR "/resolution" /* Legacy CLI state, migrated on restore. */
 /* Must match ScreenResolutionFragment.SAVED_RESOLUTION in Settings. */
 #define RESOLUTION_SETTING "user_selected_resolution"
+/* Must match ScreenResolutionFragment.SAVED_DENSITY in Settings. */
+#define DENSITY_SETTING    "user_selected_density"
 #define DEFAULT_CAL_PATH   "/vendor/etc/vmaxdisplay/default_calibration.txt"
 
 #define INOTIFY_POLL_WAIT_MS 50       //Wait for further inotify events before reloading
@@ -543,7 +545,92 @@ static int run_android_command(char *const argv[]) {
     return 0;
 }
 
-static int apply_resolution(size_t i) {
+/* Density is kept as a base in milli-dpi at RES_BASE_WIDTH and scaled per mode, so repeated
+ * switches never accumulate rounding. State "<base> <last applied dpi> <last applied width>";
+ * must match ScreenResolutionFragment. A wm density that differs from the last applied one
+ * was changed by the user and becomes the new base. */
+struct density_state {
+    long base;
+    int density, width;
+};
+
+static int read_command(const char *command, char *out, size_t size) {
+    FILE *f = popen(command, "r");
+    if (!f) return 1;
+    size_t n = fread(out, 1, size - 1, f);
+    out[n] = '\0';
+    int status = pclose(f);
+    return status == -1 || !WIFEXITED(status) || WEXITSTATUS(status) != 0;
+}
+
+static int parse_after(const char *text, const char *label, int *value) {
+    const char *p = strstr(text, label);
+    return p && sscanf(p + strlen(label), "%d", value) == 1 && *value > 0;
+}
+
+/* Effective wm density, or -1. */
+static int current_density(void) {
+    char out[128];
+    int value;
+    if (read_command("/system/bin/cmd window density", out, sizeof(out))) return -1;
+    if (parse_after(out, "Override density:", &value) ||
+        parse_after(out, "Physical density:", &value))
+        return value;
+    return -1;
+}
+
+/* Current panel width, or -1. */
+static int current_width(void) {
+    char out[128];
+    int value;
+    if (read_command("/system/bin/cmd window size", out, sizeof(out)) ||
+        !parse_after(out, "Physical size:", &value))
+        return -1;
+    return value;
+}
+
+static int load_density_state(struct density_state *st) {
+    char out[64], extra;
+    if (read_command("/system/bin/cmd settings get global " DENSITY_SETTING, out, sizeof(out)))
+        return 0;
+    return sscanf(out, "%ld %d %d %c", &st->base, &st->density, &st->width, &extra) == 3 &&
+           st->base > 0 && st->density > 0 && st->width > 0;
+}
+
+static int density_for_width(long base, int width) {
+    long unit = (long)RES_BASE_WIDTH * 1000;
+    return (int)((base * width + unit / 2) / unit);
+}
+
+static long base_from_density(int density, int width) {
+    return ((long)density * RES_BASE_WIDTH * 1000 + width / 2) / width;
+}
+
+/* Base density to scale from: the saved one while wm still holds what was last applied,
+ * else the user's density at the width it was set. Restore never trusts the boot-time width. */
+static long resolve_density_base(int restore) {
+    struct density_state st;
+    int have = load_density_state(&st);
+    int cur = current_density();
+    int width;
+
+    if (have && (cur < 0 || cur == st.density)) return st.base;
+    if (have) return base_from_density(cur, st.width);
+    if (!restore && cur > 0 && (width = current_width()) > 0)
+        return base_from_density(cur, width);
+    return (long)RES_BASE_DENSITY * 1000;
+}
+
+static int save_density_state(long base, int density, int width) {
+    char value[48];
+    snprintf(value, sizeof(value), "%ld %d %d", base, density, width);
+    char *const argv[] = { "cmd", "settings", "put", "global", DENSITY_SETTING, value, NULL };
+    return run_android_command(argv);
+}
+
+static int apply_resolution(size_t i, int restore, int *density_out) {
+    long base = resolve_density_base(restore);
+    int target = density_for_width(base, RES_MODES[i].width);
     char w[16], h[16];
     snprintf(w, sizeof(w), "%d", RES_MODES[i].width);
     snprintf(h, sizeof(h), "%d", RES_MODES[i].height);
@@ -552,15 +639,19 @@ static int apply_resolution(size_t i) {
     if (run_android_command(argv) != 0)
         return 1;
 
-    /* wm density, scaled from the stock QHD density to preserve apparent UI size. */
     char density[16];
-    snprintf(density, sizeof(density), "%d",
-             (RES_BASE_DENSITY * RES_MODES[i].width + RES_BASE_WIDTH / 2) / RES_BASE_WIDTH);
+    snprintf(density, sizeof(density), "%d", target);
     char *const density_argv[] = { "cmd", "window", "density", density, NULL };
     if (run_android_command(density_argv) != 0) {
         fprintf(stderr, "resolution applied but density adjustment failed\n");
         return 1;
     }
+    if (save_density_state(base, target, RES_MODES[i].width) != 0) {
+        fprintf(stderr, "resolution applied but could not save Settings.Global.%s\n",
+                DENSITY_SETTING);
+        return 1;
+    }
+    *density_out = target;
     return 0;
 }
 
@@ -577,7 +668,8 @@ static int cmd_resolution(const char *arg) {
         fprintf(stderr, "unknown resolution '%s' (hd|fhd|qhd or 720|1080|1440)\n", arg);
         return 1;
     }
-    if (apply_resolution(i) != 0)
+    int density;
+    if (apply_resolution(i, 0, &density) != 0)
         return 1;
     if (save_resolution(i) != 0) {
         fprintf(stderr, "resolution applied but could not save Settings.Global.%s\n",
@@ -586,8 +678,7 @@ static int cmd_resolution(const char *arg) {
     }
 
     printf("resolution %dx%d, density %d applied and saved\n",
-           RES_MODES[i].width, RES_MODES[i].height,
-           (RES_BASE_DENSITY * RES_MODES[i].width + RES_BASE_WIDTH / 2) / RES_BASE_WIDTH);
+           RES_MODES[i].width, RES_MODES[i].height, density);
     return 0;
 }
 
@@ -630,7 +721,8 @@ static int cmd_restore_resolution(void) {
         return 1;
     }
 
-    if (apply_resolution(i) != 0) {
+    int density;
+    if (apply_resolution(i, 1, &density) != 0) {
         LOGE("could not restore resolution %s", RES_MODES[i].name);
         return 1;
     }
