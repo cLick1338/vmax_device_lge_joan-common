@@ -1,55 +1,73 @@
 #!/usr/bin/env python3
 # Vmax
-"""Generate per-locale Vmax string overlays from upstream translations.
+"""Generate the Vmax brand string overlays from the upstream strings.
 
-For every string overridden in an overlay's default values/strings.xml, copy the
-upstream translation for each locale and replace "LineageOS" with "Vmax".
-Re-run after merging upstream so new translations are picked up.
+The brand is defined once here. For each listed string key, the upstream text
+of every locale (including the English default) has "LineageOS" replaced with
+the brand. Re-run after merging upstream so new translations are picked up.
+Hand-written, non-brand overrides (URLs) live in separate files and are kept.
 """
 import re
 import sys
 from pathlib import Path
 
+BRAND_DISPLAY = "Vₘₐₓ"  # titles, headers and labels
+BRAND_PLAIN = "Vmax"                    # running text
+
 ROOT = Path(__file__).resolve().parents[4]
 COMMON = ROOT / "device/lge/joan-common"
-# (upstream res dir, overlay res dir)
 TARGETS = [
-    ("lineage-sdk/lineage/res/res", "overlay-lineage/lineage-sdk/lineage/res/res"),
-    ("packages/apps/Updater/app/src/main/res", "overlay/packages/apps/Updater/app/src/main/res"),
-    ("packages/apps/SetupWizard/res", "overlay/packages/apps/SetupWizard/res"),
-    ("packages/apps/LineageParts/res", "overlay/packages/apps/LineageParts/res"),
+    dict(upstream="lineage-sdk/lineage/res/res",
+         overlay="overlay-lineage/lineage-sdk/lineage/res/res",
+         display={"lineage_version", "lineage_updates", "lineageos_system_label"},
+         plain=set()),
+    dict(upstream="packages/apps/Updater/app/src/main/res",
+         overlay="overlay/packages/apps/Updater/app/src/main/res",
+         display={"header_title_text", "list_build_version", "list_build_version_date"},
+         plain={"info_dialog_message"}),
+    dict(upstream="packages/apps/SetupWizard/res",
+         overlay="overlay/packages/apps/SetupWizard/res",
+         display={"os_name", "setup_services"},
+         plain=set()),
+    dict(upstream="packages/apps/LineageParts/res",
+         overlay="overlay/packages/apps/LineageParts/res",
+         display={"lineageparts_title", "egg_title"},
+         plain={"privacy_settings_category"}),
 ]
-# Keys that use the subscript form
-SUB_KEYS = {"lineage_version", "lineage_updates"}
 STRING = re.compile(r'<string\s+name="([^"]+)"[^>]*>.*?</string>', re.S)
 HEADER = ('<?xml version="1.0" encoding="utf-8"?>\n<!-- //Vmax -->\n'
           '<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">\n')
 
 
+def render(src, forms):
+    out = []
+    for m in STRING.finditer(src):
+        key, text = m.group(1), m.group(0)
+        if key in forms and "LineageOS" in text:
+            out.append("    " + text.replace("LineageOS", forms[key]))
+    return out
+
+
 def main():
     total = 0
-    for upstream, overlay in TARGETS:
-        up, ov = ROOT / upstream, COMMON / overlay
-        default = (ov / "values/strings.xml").read_text()
-        keys = {m.group(1) for m in STRING.finditer(default)}
-        for loc in sorted(up.glob("values-*")):
-            # English variants are hand-copied from the default overlay
-            if loc.name.startswith("values-en") or not (loc / "strings.xml").exists():
+    for t in TARGETS:
+        up, ov = ROOT / t["upstream"], COMMON / t["overlay"]
+        forms = {k: BRAND_DISPLAY for k in t["display"]}
+        forms.update({k: BRAND_PLAIN for k in t["plain"]})
+        for old in ov.glob("values*/strings.xml"):
+            old.unlink()
+        for loc in [up / "values", *sorted(up.glob("values-*"))]:
+            if not (loc / "strings.xml").exists():
                 continue
-            src = (loc / "strings.xml").read_text()
-            out = []
-            for m in STRING.finditer(src):
-                key, text = m.group(1), m.group(0)
-                if key in keys and "LineageOS" in text:
-                    sub = "Vₘₐₓ" if key in SUB_KEYS else "Vmax"
-                    out.append("    " + text.replace("LineageOS", sub))
-            target = ov / loc.name / "strings.xml"
+            out = render((loc / "strings.xml").read_text(), forms)
             if out:
+                target = ov / loc.name / "strings.xml"
                 target.parent.mkdir(parents=True, exist_ok=True)
                 target.write_text(HEADER + "\n".join(out) + "\n</resources>\n")
                 total += len(out)
-            elif target.exists():
-                target.unlink()
+        for d in ov.glob("values*"):
+            if d.is_dir() and not any(d.iterdir()):
+                d.rmdir()
     print(f"wrote {total} strings")
 
 

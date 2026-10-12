@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- //Vmax -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="header_title_text">Vmax\n%1$s</string>
-    <string name="list_build_version">Vmax %1$s</string>
-    <string name="list_build_version_date">Vmax %1$s - %2$s</string>
+    <string name="header_title_text">Vₘₐₓ\n%1$s</string>
+    <string name="list_build_version">Vₘₐₓ %1$s</string>
+    <string name="list_build_version_date">Vₘₐₓ %1$s - %2$s</string>
     <string name="info_dialog_message">نوێکارییەکانی Vmax پاکێجی تەواوی دامەزراندنن. ئەمە واتە دەتوانیت هەمیشە تەنها دواین نوێکاری دابمەزرێنیت، تەنانەت ئەگەر هەندێک نوێکاری پێشووت تێپەڕاندبێت!</string>
 </resources>

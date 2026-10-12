@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- //Vmax -->
-<resources>
-    <string name="os_name" translatable="false">Vmax</string>
-    <string name="setup_services">Vmax features</string>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="os_name" translatable="false">Vₘₐₓ</string>
+    <string name="setup_services">Vₘₐₓ features</string>
 </resources>

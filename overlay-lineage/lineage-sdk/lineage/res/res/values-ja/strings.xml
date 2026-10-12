@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- //Vmax -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="lineageos_system_label">Vmax システム</string>
+    <string name="lineageos_system_label">Vₘₐₓ システム</string>
     <string name="lineage_updates">Vₘₐₓ アップデート</string>
     <string name="lineage_version">Vₘₐₓ バージョン</string>
 </resources>
