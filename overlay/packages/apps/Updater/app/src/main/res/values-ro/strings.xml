@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- //Vmax -->
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="header_title_text">Vmax\n%1$s</string>
+    <string name="list_build_version">Vmax <xliff:g id="version" example="14.1">%1$s</xliff:g></string>
+    <string name="list_build_version_date">Vmax <xliff:g id="version" example="14.1">%1$s</xliff:g> - <xliff:g id="date" example="July 11, 2017">%2$s</xliff:g></string>
+    <string name="info_dialog_message">Actualizările Vmax sunt pachete complete de instalare. Acest lucru înseamnă că întotdeauna puteți instala doar ultima actualizare, chiar dacă ați sărit unele dintre ele!</string>
+</resources>

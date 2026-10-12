@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- //Vmax -->
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="lineageos_system_label">نظام Vmax</string>
+    <string name="lineage_updates">تحديثات V<sub>max</sub></string>
+    <string name="lineage_version">إصدار V<sub>max</sub></string>
+</resources>
