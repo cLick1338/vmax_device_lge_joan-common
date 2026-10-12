@@ -2,6 +2,6 @@
 <!-- //Vmax -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="lineageos_system_label">Vmax-systeem</string>
-    <string name="lineage_updates">V<sub>max</sub>-fernijingen</string>
-    <string name="lineage_version">V<sub>max</sub>-ferzje</string>
+    <string name="lineage_updates">Vₘₐₓ-fernijingen</string>
+    <string name="lineage_version">Vₘₐₓ-ferzje</string>
 </resources>

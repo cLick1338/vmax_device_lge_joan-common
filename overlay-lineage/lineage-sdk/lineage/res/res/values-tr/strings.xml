@@ -2,6 +2,6 @@
 <!-- //Vmax -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="lineageos_system_label">Vmax Sistemi</string>
-    <string name="lineage_updates">V<sub>max</sub> güncellemeleri</string>
-    <string name="lineage_version">V<sub>max</sub> sürümü</string>
+    <string name="lineage_updates">Vₘₐₓ güncellemeleri</string>
+    <string name="lineage_version">Vₘₐₓ sürümü</string>
 </resources>

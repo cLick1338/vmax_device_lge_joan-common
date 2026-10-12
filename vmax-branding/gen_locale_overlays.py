@@ -41,7 +41,7 @@ def main():
             for m in STRING.finditer(src):
                 key, text = m.group(1), m.group(0)
                 if key in keys and "LineageOS" in text:
-                    sub = "V<sub>max</sub>" if key in SUB_KEYS else "Vmax"
+                    sub = "Vₘₐₓ" if key in SUB_KEYS else "Vmax"
                     out.append("    " + text.replace("LineageOS", sub))
             target = ov / loc.name / "strings.xml"
             if out:
