@@ -154,6 +154,14 @@ ro.frp.pst=/dev/block/platform/soc/1da4000.ufshc/by-name/frp
 ro.vendor.display.hdr.config=/vendor/etc/hdr_tm_config.xml
 vendor.display.hdr.config=/vendor/etc/hdr_tm_config.xml
 
+# Panel colour modes (img_tune screen_mode: 0 native, 1 DCI-P3, 3 sRGB)
+ro.vendor.display.panel_mode.node=/sys/devices/virtual/panel/img_tune/screen_mode
+ro.vendor.display.panel_mode.native=0
+ro.vendor.display.panel_mode.srgb=3
+ro.vendor.display.panel_mode.display_p3=1
+# SF colour setting (vendor colour mode) that keeps unmanaged on the DCI-P3 panel mode
+ro.vendor.display.panel_mode.unmanaged_p3=256
+
 # Keyguard
 keyguard.no_require_sim=true
 

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--Vmax: HDR brightness boost only; everything else falls back to config.xml -->
+<displayConfiguration>
+    <hdrBrightnessConfig>
+        <!-- no ambient-lux limits -->
+        <brightnessMap/>
+        <brightnessIncreaseDebounceMillis>0</brightnessIncreaseDebounceMillis>
+        <brightnessDecreaseDebounceMillis>0</brightnessDecreaseDebounceMillis>
+        <screenBrightnessRampIncrease>1.0</screenBrightnessRampIncrease>
+        <screenBrightnessRampDecrease>1.0</screenBrightnessRampDecrease>
+        <minimumHdrPercentOfScreenForNbm>0</minimumHdrPercentOfScreenForNbm>
+        <minimumHdrPercentOfScreenForHbm>0</minimumHdrPercentOfScreenForHbm>
+        <allowInLowPowerMode>false</allowInLowPowerMode>
+        <!-- 8x SDR nits: max backlight (~350 nits) from ~44 nits SDR up, capped below -->
+        <sdrHdrRatioMap>
+            <point>
+                <first>7.565</first>
+                <second>8.0</second>
+            </point>
+            <point>
+                <first>349.7</first>
+                <second>8.0</second>
+            </point>
+        </sdrHdrRatioMap>
+    </hdrBrightnessConfig>
+</displayConfiguration>

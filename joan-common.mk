@@ -187,7 +187,15 @@ PRODUCT_PACKAGES += \
 
 # HDR
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/configs/hdr_tm_config.xml:$(TARGET_COPY_OUT_VENDOR)/etc/hdr_tm_config.xml
+    $(LOCAL_PATH)/configs/hdr_tm_config.xml:$(TARGET_COPY_OUT_VENDOR)/etc/hdr_tm_config.xml \
+    $(LOCAL_PATH)/configs/displayconfig/display_port_0.xml:$(TARGET_COPY_OUT_VENDOR)/etc/displayconfig/display_port_0.xml
+
+PRODUCT_PACKAGES += \
+    qdcm_calib_data_SW43402_cmd_mode_dsc_dsi_panel_2_0.xml \
+    qdcm_calib_data_SW43402_cmd_mode_dsc_dsi_panel_2_1.xml \
+    qdcm_calib_data_SW43402_cmd_mode_dsc_dsi_panel_3_0.xml \
+    qdcm_calib_data_SW43402_cmd_mode_dsc_dsi_panel_3_1.xml \
+    qdcm_calib_data_SW43402_cmd_mode_dsc_dsi_panel_4_0.xml
 
 # Health
 PRODUCT_PACKAGES += \
@@ -230,6 +238,11 @@ PRODUCT_PACKAGES += \
 # Live Display
 PRODUCT_PACKAGES += \
     vendor.lineage.livedisplay-service.lge
+
+# Panel colour modes are driven by the composer (Settings > Colors)
+$(call soong_config_set,livedisplay_lge,enable_dm,false)
+# Outdoor mode drives the panel boost bit (img_tune/boost_status)
+$(call soong_config_set,livedisplay_lge,enable_se,true)
 
 # Lineage Health
 PRODUCT_PACKAGES += \

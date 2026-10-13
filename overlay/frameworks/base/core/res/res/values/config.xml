@@ -474,6 +474,14 @@
          in hardware. -->
     <bool name="config_setColorTransformAccelerated">true</bool>
 
+    <!-- Managed, unmanaged DCI-P3 (vendor 256, see vendor.prop), unmanaged native;
+         Automatic equals Natural without HWC render intents -->
+    <integer-array name="config_availableColorModes">
+        <item>0</item>
+        <item>256</item>
+        <item>2</item>
+    </integer-array>
+
     <!-- True if Unprocessed audio source supports the required frequency range and level -->
     <bool name="config_supportAudioSourceUnprocessed">true</bool>
 
