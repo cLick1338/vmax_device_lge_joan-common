@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- //Vmax -->
+<resources>
+    <!-- Hides recovery update option, also skips the setup wizard page -->
+    <bool name="config_hideRecoveryUpdate">true</bool>
+</resources>
