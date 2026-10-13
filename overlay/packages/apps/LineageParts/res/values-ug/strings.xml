@@ -2,4 +2,9 @@
 <!-- //Vmax -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="lineageparts_title">Vₘₐₓ تەڭشەكلىرى</string>
+    <string name="anonymous_statistics_title">Vₘₐₓ ئىستاتىستىكىسى</string>
+    <string name="anonymous_statistics_summary">ئاتسىز ئىستاتىستىكا دوكلاتىنى ئېچىپ Vmax نى ياخشىلاشقا ياردەم بېرىڭ</string>
+    <string name="anonymous_statistics_warning">بۇ Vmax ئىستاتىستىكىسىنى قوزغىتىپ شەخسىي ئۇچۇرلار بولمىغان سانلىق مەلۇماتنى
+         Vmax ئىجادكارلىرىغا يوللاپ، ھەر خىل ئۈسكۈنىلەردىكى ئورنىتىشلارنى ئىزلاشقا قولايلىق يارىتىدۇ. يوللانغان ئۇچۇردا ئالاھىدە بىر بەلگە بولۇپ،
+         شەخسىيەت ۋە شەخسىي سانلىق مەلۇماتلارغا چېتىلمايدۇ. بۇ سانلىق مەلۇماتلار ھەر قېتىم قوزغالغاندا يوللىنىدۇ.\n\nيوللانغان سانلىق مەلۇماتنىڭ ئۈلگىسى سۈپىتىدە سانلىق مەلۇماتنى ئالدىن كۆزەتنى چېكىڭ.</string>
 </resources>

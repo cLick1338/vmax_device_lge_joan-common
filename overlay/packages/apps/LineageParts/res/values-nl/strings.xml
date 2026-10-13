@@ -2,4 +2,7 @@
 <!-- //Vmax -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="lineageparts_title">Vₘₐₓ-instellingen</string>
+    <string name="anonymous_statistics_title">Vₘₐₓ-statistieken</string>
+    <string name="anonymous_statistics_summary">Help Vmax te verbeteren door anonieme statistieken te verzenden</string>
+    <string name="anonymous_statistics_warning">Door statistieken verzenden toe te staan worden tijdens het opstarten anonieme gegevens naar de ontwikkelaars van Vmax verzonden om unieke installaties te kunnen volgen. In de gegevens zit een uniek id-nummer verwerkt, dat uw privacy niet schendt.\n\nOm een voorbeeld te zien, tikt u op \'Voorbeeld van gegevens\'.</string>
 </resources>

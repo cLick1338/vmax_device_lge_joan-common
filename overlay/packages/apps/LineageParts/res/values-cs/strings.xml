@@ -2,4 +2,7 @@
 <!-- //Vmax -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="lineageparts_title">Nastavení Vₘₐₓ</string>
+    <string name="anonymous_statistics_title">Vₘₐₓ statistika</string>
+    <string name="anonymous_statistics_summary">Pomozte nám zdokonalit Vmax zasíláním anonymní statistiky</string>
+    <string name="anonymous_statistics_warning">Povolením zasílání statistik systému Vmax umožní odesílat neosobní data vývojářům k zjišťování stavu instalace na různých zařízeních. Odesílaná data obsahují unikátní identifikátor zařízení, který nezpůsobí žádnou kompromitaci soukromí nebo osobních dat. Data jsou odesílána při každém restartu zařízení.\n\nDotykem na „Náhled dat“ se můžete podívat na příklad odesílaných dat.</string>
 </resources>

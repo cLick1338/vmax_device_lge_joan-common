@@ -2,4 +2,7 @@
 <!-- //Vmax -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="lineageparts_title">การตั้งค่า Vₘₐₓ</string>
+    <string name="anonymous_statistics_title">สถิติ Vₘₐₓ</string>
+    <string name="anonymous_statistics_summary">ช่วยทำให้ Vmax ดีขึ้นโดยการส่งรายงานสถิติแบบไม่ระบุตัวตน</string>
+    <string name="anonymous_statistics_warning">การส่งสถิติแบบไม่ระบุตัวตนไปยัง Vmax จะอนุญาตให้ส่งข้อมูลที่ไม่ใช่ข้อมูลส่วนตัวไปยังนักพัฒนาของ Vmax เพื่อติดตามการติดตั้งบนอุปกรณ์ทั้งหมด ข้อมูลที่ถูกส่งรวมไปถึงตัวระบุลักษณะเฉพาะ\n\nซึ่งไม่ส่งผลกระทบต่อความเป็นส่วนตัวและข้อมูลส่วนบุคคลของคุณ โดยจะส่งข้อมูลทุกครั้งที่เริ่มระบบ\n\n แตะ \"แสดงตัวอย่างข้อมูล\" เพื่อดูตัวอย่างข้อมูลที่ถูกส่ง</string>
 </resources>

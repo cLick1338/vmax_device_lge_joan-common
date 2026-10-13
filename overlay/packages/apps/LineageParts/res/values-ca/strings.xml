@@ -2,4 +2,7 @@
 <!-- //Vmax -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="lineageparts_title">Configuració de Vₘₐₓ</string>
+    <string name="anonymous_statistics_title">Estadístiques de Vₘₐₓ</string>
+    <string name="anonymous_statistics_summary">Ajuda a fer millor Vmax optant a transmetre estadístiques anònimes</string>
+    <string name="anonymous_statistics_warning">Optant a les estadístiques de Vmax permetràs que dades no-personals siguin transmeses als desenvolupadors de Vmax per rastrejar les instal·lacions individuals a través dels dispositius. La informació transmesa inclou un identificador únic, que no compromet la privacitat o les dades personals. Les dades son transmeses durant cada arrancada.\n\nPer un exemple de les dades transmeses, pica a vista prèvia de Dades.</string>
 </resources>

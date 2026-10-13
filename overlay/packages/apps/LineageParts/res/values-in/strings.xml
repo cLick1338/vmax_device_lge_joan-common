@@ -2,4 +2,7 @@
 <!-- //Vmax -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="lineageparts_title">Setelan Vₘₐₓ</string>
+    <string name="anonymous_statistics_title">Statistik Vₘₐₓ</string>
+    <string name="anonymous_statistics_summary">Bantu Vmax untuk menjadi lebih baik dengan memilih ikut dalam pelaporan statistik anonim</string>
+    <string name="anonymous_statistics_warning">Memilih ikut dalam Statistik Vmax akan memungkinkan data tidak pribadi dikirimkan kepada para pengembang Vmax untuk dilacak instalasi unik pada berbagai macam perangkat. Informasi yang dikirimkan berisi pengenal unik, dan tidak membahayakan privasi atau data pribadi Anda. Data dikirim setiap kali perangkat di mulai ulang.\n\nUntuk melihat contoh data yang akan dikirim, ketuk Pratinjau Data.</string>
 </resources>

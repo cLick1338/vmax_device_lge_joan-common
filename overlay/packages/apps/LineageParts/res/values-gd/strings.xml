@@ -2,4 +2,9 @@
 <!-- //Vmax -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="lineageparts_title">Roghainnean Vₘₐₓ</string>
+    <string name="anonymous_statistics_title">Stadastaireachd air Vₘₐₓ</string>
+    <string name="anonymous_statistics_summary">Cuidich leinn a thoirt piseach air Vmax is tu a’ cur aithrisean stadastaireachd gun urra an comas</string>
+    <string name="anonymous_statistics_warning">Ma cheadaicheas tu gun cruinnich Vmax stadastaireachd, thèid dàta neo-phearsanta a chur a-null gu
+        luchd-leasachaidh Vmax airson stàlaidhean fa leth a thracadh thar uidheaman. Gabhaidh am fiosrachadh a thèid a chur a-null a-steach aithnichear àraidh
+        nach bris a-steach air do phrìobhaideachd no dàta phearsanta. Thèid an dàta a chur a-null gach turas a thèid an t-uidheam a bhùtadh.\n\nAirson ball-eisimpleir dhen dàta a thèid a chur a-null, thòir gnogag air “Ro-sheall an dàta”.</string>
 </resources>

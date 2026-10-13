@@ -2,4 +2,7 @@
 <!-- //Vmax -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="lineageparts_title">Cài Đặt Vₘₐₓ</string>
+    <string name="anonymous_statistics_title">Thống kê Vₘₐₓ</string>
+    <string name="anonymous_statistics_summary">Giúp cho Vmax tốt hơn bằng cách chọn vào báo cáo số liệu thống kê ẩn danh</string>
+    <string name="anonymous_statistics_warning">Chọn tham gia Thống kê Vmax sẽ cho phép gửi dữ liệu không liên quan đến cá nhân đến những nhà phát triển của Vmax để theo dõi số lượt cài đặt duy nhất trên các thiết bị. Thông tin đã gửi sẽ bao gồm một ký hiệu nhận dạng duy nhất, nó sẽ không ảnh hưởng đến sự riêng tư hoặc dữ liệu cá nhân của bạn. Dữ liệu được gửi vào mỗi lần khởi động.\n\nĐể xem mẫu dữ liệu được gửi, chạm vào Xem trước dữ liệu.</string>
 </resources>

@@ -2,4 +2,6 @@
 <!-- //Vmax -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="lineageparts_title">Настройки Vₘₐₓ</string>
+    <string name="anonymous_statistics_summary">Помогнете да направим Vmax по-добър, като разрешите да събира анонимни статистически данни</string>
+    <string name="anonymous_statistics_warning">Ще позволи на Vmax Statistics да изпраща не лична информация  на разработчиците от Vmax, за проследяване на инсталациите в устройството. Предоставената информация включва уникален идентификатор, който не застрашава вашата поверителност или лични данни. Данните се подават по време на всяко зареждане.\n\nПример за данните, които са подадени.</string>
 </resources>

@@ -2,4 +2,7 @@
 <!-- //Vmax -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="lineageparts_title">Paramètres de Vₘₐₓ</string>
+    <string name="anonymous_statistics_title">Statistiques Vₘₐₓ</string>
+    <string name="anonymous_statistics_summary">Contribuer à l\'amélioration de Vmax en envoyant des rapports de statistiques anonymes</string>
+    <string name="anonymous_statistics_warning">Autoriser l\'envoi de statistiques Vmax permet aux développeurs de Vmax de collecter des données anonymes afin de comptabiliser le nombre d\'installations par type d\'appareil. Les informations transmises contiennent un identifiant unique et ne compromettent en aucune manière votre vie privée ou vos données personnelles. Les informations sont envoyées à chaque démarrage du système.\n\nPour visualiser un exemple de ces données, sélectionnez « Aperçu des données ».</string>
 </resources>

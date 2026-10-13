@@ -2,4 +2,8 @@
 <!-- //Vmax -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="lineageparts_title">Vₘₐₓ stillingar</string>
+    <string name="anonymous_statistics_title">Tölfræði Vₘₐₓ</string>
+    <string name="anonymous_statistics_summary">Hjálpaðu okkur við að gera Vmax betra með því að skrá þig í að senda nafnlausa notkunartölfræði</string>
+    <string name="anonymous_statistics_warning">Ef tekið er þátt í tölfræðisöfnun Vmax er gefið leyfi til að sendar séu ópresónugreinanleg gögn til forritara Vmax til að fylgjast með einstökum uppsetningum á mismunandi tækjum. Meðal upplýsinganna sem sendar eru inn er einstakt auðkenni,
+        sem þó skerðir ekki friðhelgi persónulegra gagna. Gögnin eru send inn í hverri ræsingu.\n\nTil að sjá dæmi um hverskyns gögn er verið að senda, skaltu ýta á forskoðun gagna.</string>
 </resources>

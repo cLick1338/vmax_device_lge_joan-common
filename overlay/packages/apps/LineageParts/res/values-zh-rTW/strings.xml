@@ -2,4 +2,9 @@
 <!-- //Vmax -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="lineageparts_title">Vₘₐₓ 設定</string>
+    <string name="anonymous_statistics_title">Vₘₐₓ 統計</string>
+    <string name="anonymous_statistics_summary">加入匿名統計報告即可協助改進 Vmax</string>
+    <string name="anonymous_statistics_warning">加入 Vmax 統計將允許非個人資料被提交到 Vmax 的開發人員，
+        以追蹤每個裝置上的獨特安裝。提交的資訊包含一個唯一識別碼，此識別碼並不會泄露您的隱私或個人資料。
+        該資料在每次開機時被提交。\n\n輕觸預覽資料以預覽被提交資料的範例。</string>
 </resources>

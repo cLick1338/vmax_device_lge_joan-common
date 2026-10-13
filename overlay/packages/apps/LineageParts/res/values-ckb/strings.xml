@@ -2,4 +2,6 @@
 <!-- //Vmax -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="lineageparts_title">ڕێکخستنەکانی Vₘₐₓ</string>
+    <string name="anonymous_statistics_title">ئامارەکانی Vₘₐₓ</string>
+    <string name="anonymous_statistics_summary">یارمەتیدانی Vmax بە ناردنی ئاماری نەناسراو</string>
 </resources>

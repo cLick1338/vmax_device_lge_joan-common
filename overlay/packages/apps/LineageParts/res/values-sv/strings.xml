@@ -2,4 +2,9 @@
 <!-- //Vmax -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="lineageparts_title">Inställningar för Vₘₐₓ</string>
+    <string name="anonymous_statistics_title">Vₘₐₓ-statistik</string>
+    <string name="anonymous_statistics_summary">Hjälp till att göra Vmax bättre genom att skicka in anonym statistik</string>
+    <string name="anonymous_statistics_warning">Att delta i Vmax statistikprogram tillåter att icke-personlig data skickas till
+        Vmax-utvecklarna för att spåra unika installationer mellan enheter. Den delgivna informationen innehåller ett unikt ID-nummer,
+        som inte kränker din integritet eller dina personliga data. Datan skickas varje gång enheten startas.\n\nFör ett exempel på den data som skickas, tryck på Förhandsgranska data.</string>
 </resources>

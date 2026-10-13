@@ -2,4 +2,9 @@
 <!-- //Vmax -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="lineageparts_title">Vₘₐₓ Ayarları</string>
+    <string name="anonymous_statistics_title">Vₘₐₓ statistikaları</string>
+    <string name="anonymous_statistics_summary">Anonim statistika göndərməni tərcih edərək, Vmax-u təkmilləşdirməyimizə kömək edin</string>
+    <string name="anonymous_statistics_warning">Vmax Statistikalarına daxil olmaqla, cihazlar arasındakı unikal quraşdırmaların
+        izlənilməsi üçün Vmax-un gəlişdiricilərinə fərdi olmayan verilərin göndərilməsinə icazə veriləcək. Göndərilən məlumatlar, məxfiliyiniz və ya fərdi veriləriniz
+        üçün təhlükəli olmayan unikal bir identifikator ehtiva edir. Verilər, hər açlış zamanı göndərilir.\n\nGöndərilən verilərə nümunə olaraq \"Veriləri önizlə\"yə toxunun.</string>
 </resources>

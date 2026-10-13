@@ -2,4 +2,7 @@
 <!-- //Vmax -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="lineageparts_title">Vₘₐₓ - Beállítások</string>
+    <string name="anonymous_statistics_title">Vₘₐₓ statisztika</string>
+    <string name="anonymous_statistics_summary">Segítsen a Vmax jobbá tételében, kapcsolja be a névtelen statisztikai adatok gyűjtését</string>
+    <string name="anonymous_statistics_warning">A Vmax statisztika engedélyezése nem terjed ki személyes adatokra, csak egy egyedi azonosítóval azonosítjuk az eszközöket. A beküldött adatok beleértve az egyedi azonosítót, nem veszélyeztetik az adatvédelmi vagy személyes adatokat. A statisztika minden rendszerindításkor elküldésre kerül.\n\nAz elküldött adatok menüpont alatt tekintheti meg a statisztikai adatokat.</string>
 </resources>

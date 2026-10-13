@@ -2,4 +2,9 @@
 <!-- //Vmax -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="lineageparts_title">Vₘₐₓ პარამეტრები</string>
+    <string name="anonymous_statistics_title">Vₘₐₓ-ის სტატისტიკა</string>
+    <string name="anonymous_statistics_summary">დაგვეხმარეთ, რომ გავაუმჯობესოთ Vmax, ვინაობის გაუმხელი მონაცემების აღრიცხვაში ჩართვით</string>
+    <string name="anonymous_statistics_warning">Vmax-სტატისტიკაში ჩართვით, პირადი ინფორმაციისგან გამიჯნული მონაცემები გაეგზავნება
+        Vmax-ის შემმუშავებლებს, თითოეული დაყენების აღსარიცხად მოწყობილობებზე. ეს მონაცემები შეიცავს სხვებისგან გამოსარჩევ ნიშანს,
+        რომლითაც არ მჟღავნდება თქვენი ვინაობა ან პირადი ინფორმაცია. მონაცემები გაიგზავნება ყოველი ჩართვისას.\n\nმაგალითის სანახავად, თუ რა სახისაა ეს ინფორმაცია, შეეხეთ „მონაცემთა შეთვალიერებას“.</string>
 </resources>

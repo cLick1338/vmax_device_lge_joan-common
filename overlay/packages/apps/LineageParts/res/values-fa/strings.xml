@@ -2,4 +2,8 @@
 <!-- //Vmax -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="lineageparts_title">تنظیمات Vₘₐₓ</string>
+    <string name="anonymous_statistics_title">آمار Vₘₐₓ</string>
+    <string name="anonymous_statistics_warning">مشارکت در آمار Vmax اجازه می‌دهد اطلاعات غیرشخصی به
+        توسعه‌دهنگان Vmax ارسال شده تا به موارد خاص نصب در دستگاه‌های مختلف دسترسی پیدا شود. اطّلاعات ارسال‌ شده شامل یک شناسهٔ یکتا است
+        که حریم خصوصی یا اطلاعات شخصی شما را در خطر افشا شدن قرار نمی‌دهد. این اطلاعات هر بار هنگام راه‌اندازی دستگاه ارسال می‌شوند.\n\nبرای مشاهدهٔ یک نمونه از اطلاعاتی که ارسال می‌شود، روی پیش‌نمایش داده‌ها ضربه بزنید.</string>
 </resources>

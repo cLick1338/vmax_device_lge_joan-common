@@ -2,4 +2,7 @@
 <!-- //Vmax -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="lineageparts_title">Configuración de Vₘₐₓ</string>
+    <string name="anonymous_statistics_title">Vₘₐₓ estadisticas</string>
+    <string name="anonymous_statistics_summary">Axude a mellorar Vmax enviando informes de estatísiticas anónimas</string>
+    <string name="anonymous_statistics_warning">Optar polo envío de estatísticas Vmax permitirá que se transmitan datos non personais aos desenvolvedores de Vmax para rastrear intalacións únicas através dos dispositivos. Os datos transmitidos teñen un identificador único, que non compromete a súa privacidade ou datos persoais. Os datos serán enviados cada vez que se inicie.\n\nPara ver un exemplo dos datos van ser enviados, toque en Previsualizar datos.</string>
 </resources>

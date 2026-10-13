@@ -2,4 +2,7 @@
 <!-- //Vmax -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="lineageparts_title">إعدادات Vₘₐₓ</string>
+    <string name="anonymous_statistics_title">إحصائيات نظام Vₘₐₓ</string>
+    <string name="anonymous_statistics_summary">ساهم في جعل Vmax أفضل بإرسال تقارير الإحصائيات</string>
+    <string name="anonymous_statistics_warning">بالموافقة على المشاركة في إحصائيات Vmax سيسمح بإرسال البيانات غير الشخصية إلى مطوري Vmax لتعقب الإصدارات المثبتة على مختلف الأجهزة كلٍ على حدة. وتشمل المعلومات المقدمة معرفًا فريدًا من نوعه، وبالتالي لا تتعرض خصوصيتك أو بياناتك الشخصية للخطر. تُرسل البيانات عند التشغيل في كل مرة.\n\n للإطلاع على مثال للبيانات التي يتم إرسالها، اضغط على معاينة البيانات.</string>
 </resources>

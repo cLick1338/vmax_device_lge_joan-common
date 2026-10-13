@@ -2,4 +2,7 @@
 <!-- //Vmax -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="lineageparts_title">Ajustes de Vₘₐₓ</string>
+    <string name="anonymous_statistics_title">Estadísticas Vₘₐₓ</string>
+    <string name="anonymous_statistics_summary">Ayuda a mejorar Vmax mediante el envío anónimo de estadísticas</string>
+    <string name="anonymous_statistics_warning">Al permitir la recopilación y el envío de estadísticas de Vmax, autorizas el envío de información de carácter no personal a los desarrolladores de Vmax para hacer un seguimiento de las instalaciones que realices en los dispositivos. La información enviada incluye un identificador único que no compromete tu privacidad ni tu información personal. Esta información es enviada durante el arranque.\n\nPara ver un ejemplo de la información enviada, toca en Previsualizar datos.</string>
 </resources>

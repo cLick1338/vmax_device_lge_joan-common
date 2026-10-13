@@ -2,4 +2,9 @@
 <!-- //Vmax -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="lineageparts_title">Vₘₐₓ Ayarları</string>
+    <string name="anonymous_statistics_title">Vₘₐₓ istatistikleri</string>
+    <string name="anonymous_statistics_summary">Anonim istatistik raporlamayı tercih ederek Vmax\'u daha iyi hale getirmeye yardımcı olun</string>
+    <string name="anonymous_statistics_warning">Vmax İstatistiklerine dahil olmak, cihazlar arasındaki benzersiz yüklemeleri izlemek için
+        Vmax geliştiricilerine kişisel olmayan verilerin gönderilmesine izin verecektir. Gönderilen bilgiler, gizliliğinizi veya
+        kişisel verilerinizi tehlikeye atmayan benzersiz bir tanımlayıcıyı içerir. Veriler her önyükleme sırasında gönderilir.\n\nGönderilen verilere bir örnek için Verileri Önizle üzerine dokunun.</string>
 </resources>

@@ -2,4 +2,9 @@
 <!-- //Vmax -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="lineageparts_title">Setări Vₘₐₓ</string>
+    <string name="anonymous_statistics_title">Statistici Vₘₐₓ</string>
+    <string name="anonymous_statistics_summary">Ajutați la îmbunătățirea lui Vmax prin optarea pentru raportarea anonimă de statistici</string>
+    <string name="anonymous_statistics_warning">Optând să trimiteți Statistici Vmax, le permiteți dezvoltatorilor Vmax
+        să primească date ne-personale pentru a urmări instalările unice la o gamă mare de dispozitive. Informația transmisă include un identificator unic,
+        care nu vă compromite intimitatea sau datele personale. Datele sunt trimise la fiecare pornire a dispozitivului.\n\nPentru a vedea un exemplu de date ce se trimit, apăsați pe Previzualizare Date.</string>
 </resources>

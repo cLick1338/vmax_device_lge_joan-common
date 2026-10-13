@@ -2,4 +2,7 @@
 <!-- //Vmax -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="lineageparts_title">Gosodiadau Vₘₐₓ</string>
+    <string name="anonymous_statistics_title">Ystadegau Vₘₐₓ</string>
+    <string name="anonymous_statistics_summary">Helpu i wella Vmax gan ganiatáu casglu adroddiadau ystadegau anhysbys</string>
+    <string name="anonymous_statistics_warning">Bydd cytuno i rannu Ystadegau Vmax yn caniatáu data na sydd yn bersonol i gael ei rannu gyda datblygwyr Vmax er mwyn tracio gosodiadau unigryw ar draws dyfeisiau. Bydd y wybodaeth a rennir yn cynnwys dynodwr unigryw i\'w adnabod heb gyfaddawdu dy breifatrwydd na dy ddata personol. Caiff y data ei rannu pob tro mae\'r system yn dechrau.\n\nI weld enghraifft o\'r data sy\'n cael ei rannu, tapia Rhagolwg Data.</string>
 </resources>

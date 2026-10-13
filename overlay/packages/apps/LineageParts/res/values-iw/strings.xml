@@ -2,4 +2,7 @@
 <!-- //Vmax -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="lineageparts_title">הגדרות Vₘₐₓ</string>
+    <string name="anonymous_statistics_title">סטטיסטיקות Vₘₐₓ</string>
+    <string name="anonymous_statistics_summary">עזור לשפר את Vmax על ידי שליחת דיווחי סטטיסטיקות אנונימית</string>
+    <string name="anonymous_statistics_warning">הצטרפות לסטטיסטיקות Vmax תאפשר שליחת מידע לא אישי למפתחי Vmax על מנת לאתר את מספר ההתקנות היחודיות לכל סוג מכשיר. המידע הנשלח כולל מזהה ייחודי, אשר אינו פוגע בפרטיותך או בנתונים האישיים שלך. המידע נשלח בכל אתחול המכשיר.\n\nכדי לצפות בדוגמה של מידע שנשלח, יש להקיש על הצגת נתונים מקדימה.</string>
 </resources>

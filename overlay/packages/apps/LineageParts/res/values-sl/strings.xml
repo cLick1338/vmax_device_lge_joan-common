@@ -2,4 +2,9 @@
 <!-- //Vmax -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="lineageparts_title">Nastavitve Vₘₐₓ</string>
+    <string name="anonymous_statistics_title">Statistika Vₘₐₓ</string>
+    <string name="anonymous_statistics_summary">Pomagajte izboljšati Vmax tako, da izberete pošiljanje anonimne statistike</string>
+    <string name="anonymous_statistics_warning">Izbira statistike Vmax bo dovolila pošiljanje neosebnih podatkov
+        razvijalcem Vmax-a, da lahko sledijo edinstvenim namestitvam v napravah. Poslani podatki vključujejo edinstven določilnik,
+        ki ne ogroža vaše zasebnosti in osebnih podatkov. Podatki so poslani ob vsakem zagonu.\n\nZa primer poslanih podatkov tapnite Predogled podatkov.</string>
 </resources>

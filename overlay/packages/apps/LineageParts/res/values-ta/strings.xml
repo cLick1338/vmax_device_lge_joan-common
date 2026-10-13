@@ -2,4 +2,5 @@
 <!-- //Vmax -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="lineageparts_title">Vₘₐₓ அமைப்புகள்</string>
+    <string name="anonymous_statistics_title">Vₘₐₓ புள்ளிவிவரங்கள்</string>
 </resources>

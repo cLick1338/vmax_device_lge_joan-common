@@ -2,4 +2,8 @@
 <!-- //Vmax -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="lineageparts_title">Vₘₐₓ ezarpenak</string>
+    <string name="anonymous_statistics_title">Vₘₐₓ estatistikak</string>
+    <string name="anonymous_statistics_summary">Vmax hobetzen lagundu estatistika anonimoak bidaliz</string>
+    <string name="anonymous_statistics_warning">Vmax-en estatistiken bilketa eta bidaltzea baimenduz, informazio ez pertsonala Vmax garatzaileei bidaltzea baimentzen duzu, gailuetan burutzen diren instalazioen jarraipenerako. Bidalitako informazioak identifikadore esklusibo eta anonimo bat darama.
+Informazio hau gailuaren abio bakoitzean bidaltzen da.\n\nBidalitako informazioaren adibide bat ikusteko, sakatu Aurreikusi datuak.</string>
 </resources>

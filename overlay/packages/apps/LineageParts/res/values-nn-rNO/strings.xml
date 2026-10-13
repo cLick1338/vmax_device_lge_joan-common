@@ -2,4 +2,7 @@
 <!-- //Vmax -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="lineageparts_title">Vₘₐₓ-innstillingar</string>
+    <string name="anonymous_statistics_title">Vₘₐₓ-statistikk</string>
+    <string name="anonymous_statistics_summary">Hjelp til med å gjera Vmax betre ved å senda inn anonym statistikk</string>
+    <string name="anonymous_statistics_warning">Ved å senda inn statistikk til Vmax-utviklarane, gjev du dei løyve til å samla inn anonyme data for å telja installasjonar på ulike einingar. Informasjonen inneheld ein unik identifikator som ikkje går ut over personvernet eller personopplysningane dine. Data vert sende inn ved kvar oppstart.\n\nTrykk på «Førehandsvis data» for å sjå døme på kva som vert sendt.</string>
 </resources>

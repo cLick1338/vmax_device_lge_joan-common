@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- //Vmax -->
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="services_metrics_label"><xliff:g id="name" example="Help improve Vmax">%1$s</xliff:g> by sending your device model, ROM version, country and non-identifiable diagnostic information. No personal data or usage logs are collected.</string>
+    <string name="services_full_description"><xliff:g id="pp_explanation">%1$s</xliff:g></string>
+    <string name="services_privacy_policy_uri" translatable="false">Vmax page</string>
+</resources>

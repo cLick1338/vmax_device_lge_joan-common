@@ -2,4 +2,9 @@
 <!-- //Vmax -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="lineageparts_title">Ustawienia Vₘₐₓ</string>
+    <string name="anonymous_statistics_title">Statystyki Vₘₐₓ</string>
+    <string name="anonymous_statistics_summary">Pomóż ulepszyć Vmax, pozwalając na wysyłanie anonimowych statystyk</string>
+    <string name="anonymous_statistics_warning">Wyrażenie zgody na udział w statystykach Vmax zezwoli na przesyłanie anonimowych danych do
+        programistów Vmax, aby śledzić ilość unikalnych instalacji na urządzeniach . Informacje zawierają unikalny identyfikator,
+       który nie narusza twojej prywatności lub prywatnych danych. Dane są wysyłane przy każdym uruchomieniu.\n\nAby zobaczyć przykład przesyłanych danych naciśnij \"podgląd danych\".</string>
 </resources>

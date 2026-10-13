@@ -2,4 +2,7 @@
 <!-- //Vmax -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="lineageparts_title">Vₘₐₓ Asetukset</string>
+    <string name="anonymous_statistics_title">Vₘₐₓ-tilastot</string>
+    <string name="anonymous_statistics_summary">Auta tekemään Vmaxista parempi tarjoamalla anonyymejä tilastoraportteja</string>
+    <string name="anonymous_statistics_warning">Vmax-tilastojen käyttöönotto mahdollistaa anonyymien tietojen lähettämisen Vmaxin kehittäjille, jotta laitteiden järjestelmäasennuksia voidaan seurata. Tiedot sisältävät yksilöllisen tunnisteen, joka ei vaaranna henkilökohtaisia tietojasi. Tietoja lähetetään jokaisella uudelleenkäynnistyskerralla.\n\nValitse Esikatsele tietoja nähdäksesi, millaisia tietoja laitteestasi lähetetään.</string>
 </resources>

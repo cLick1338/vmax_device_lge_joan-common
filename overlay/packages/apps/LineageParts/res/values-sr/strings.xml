@@ -2,4 +2,6 @@
 <!-- //Vmax -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="lineageparts_title">Подешавања Vₘₐₓ-а</string>
+    <string name="anonymous_statistics_summary">Помозите нам да побољшамо Vmax тако што ћете дозволити слање анонимне статистике.</string>
+    <string name="anonymous_statistics_warning">Анонимни подаци омогућавају програмерима Vmax-а да прате рад ОС на различитим уређајима. Јединствени идентификатор, који не угрожава вашу приватност, шаље се по сваком подизању система.\n\nДа бисте видели пример, додирните „Прегледај податке“.</string>
 </resources>

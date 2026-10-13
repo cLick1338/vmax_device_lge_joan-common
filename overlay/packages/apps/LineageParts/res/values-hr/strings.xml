@@ -2,4 +2,7 @@
 <!-- //Vmax -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="lineageparts_title">Vₘₐₓ Postavke</string>
+    <string name="anonymous_statistics_title">Vₘₐₓ statistika</string>
+    <string name="anonymous_statistics_summary">Pomozite nam poboljšati Vmax slanjem anonimnih statističkih izvješća</string>
+    <string name="anonymous_statistics_warning">Omogućavanjem slanja Vmax statistike dozvolit će se da se neosobni podaci dostave razvojnom timu Vmax-a kako bi se pratio broj pojedinačnih instalacija na različite uređaje. Informacije koje se šalju sadrže jedinstvenu identifikaciju koja ne kompromitira privatnost ili osobne podatke. Podaci se šalju pri svakom pokretanju uređaja.\n\nZa primjer podataka koji se šalju, dodirnite pregled podataka.</string>
 </resources>

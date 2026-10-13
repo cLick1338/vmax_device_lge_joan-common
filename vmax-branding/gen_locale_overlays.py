@@ -5,7 +5,7 @@
 The brand is defined once here. For each listed string key, the upstream text
 of every locale (including the English default) has "LineageOS" replaced with
 the brand. Re-run after merging upstream so new translations are picked up.
-Hand-written, non-brand overrides (URLs) live in separate files and are kept.
+Hand-written, non-brand overrides (URLs, onboarding text) live in separate files and are kept.
 """
 import re
 import sys
@@ -31,8 +31,9 @@ TARGETS = [
          plain=set()),
     dict(upstream="packages/apps/LineageParts/res",
          overlay="overlay/packages/apps/LineageParts/res",
-         display={"lineageparts_title", "egg_title"},
-         plain={"privacy_settings_category"}),
+         display={"lineageparts_title", "egg_title", "anonymous_statistics_title"},
+         plain={"privacy_settings_category", "anonymous_statistics_summary",
+                "anonymous_statistics_warning"}),
 ]
 STRING = re.compile(r'<string\s+name="([^"]+)"[^>]*>.*?</string>', re.S)
 HEADER = ('<?xml version="1.0" encoding="utf-8"?>\n<!-- //Vmax -->\n'

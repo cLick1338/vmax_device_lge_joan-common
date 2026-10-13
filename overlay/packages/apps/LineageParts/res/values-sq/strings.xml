@@ -2,4 +2,7 @@
 <!-- //Vmax -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="lineageparts_title">Cilësimet e Vₘₐₓ</string>
+    <string name="anonymous_statistics_title">Statistikat e Vₘₐₓ</string>
+    <string name="anonymous_statistics_summary">Ndihmo në përmirësimin e Vmax duke lejuar raportimin anonim të statistikave</string>
+    <string name="anonymous_statistics_warning">Aktivizimi i Statistikave të Vmax do të lejojë dërgimin e të dhënave jo-personale tek        zhvilluesit e Vmax që të ndjekin instalime unike në pajisje të ndryshme. Informacioni i dërguar përmban një identifikues unik,        që nuk kompromenton privatësinë apo të dhënat e tua personale. Të dhënat dërgohen gjatë rindezjes së pajisjes.\n\nPër të parë një shëmbull të të dhënave që dërgohen, shtypni në Inspekto të Dhënat.</string>
 </resources>

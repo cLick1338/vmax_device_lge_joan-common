@@ -2,4 +2,7 @@
 <!-- //Vmax -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="lineageparts_title">Definições Vₘₐₓ</string>
+    <string name="anonymous_statistics_title">Estatísticas Vₘₐₓ</string>
+    <string name="anonymous_statistics_summary">Ajude a melhorar a Vmax optando por ativar o envio do relatório de estatísticas anónimas</string>
+    <string name="anonymous_statistics_warning">Optar pelo envio de estatísticas Vmax vai permitir que dados não pessoais sejam transmitidos aos desenvolvedores da Vmax, para rastrearem instalações nos dispositivos. As informações submetidas incluem um identificador único, que não compromete a sua privacidade ou dados pessoais. Os dados são enviados durante cada inicialização.\n\nPara um exemplo dos dados que são enviados, toque em \'Pré-visualizar dados\'.</string>
 </resources>

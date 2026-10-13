@@ -2,4 +2,9 @@
 <!-- //Vmax -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="lineageparts_title">Cunfiguratziones de Vₘₐₓ</string>
+    <string name="anonymous_statistics_title">Istatìsticas de Vₘₐₓ</string>
+    <string name="anonymous_statistics_summary">Agiuda a megiorare Vmax permitende s\'imbiu de istatìsticas anònimas</string>
+    <string name="anonymous_statistics_warning">Ativende is Istatìsticas Vmax as a permìtere s\'imbiu de datos non personales a s\'iscuadra de isvilupu
+        pro contare su nùmeru de installatziones ùnicas in is dispositivos. S\'informatzione imbiada includet un\'identificadore ùnicu
+        chi non cumpromitet in nissuna manera sa riservadesa tua o is datos personales. Is datos s\'imbiant a cada aviu\n\nPro bìdere un\'esempru de datos imbiados, incarca Previsualizatzione datos.</string>
 </resources>

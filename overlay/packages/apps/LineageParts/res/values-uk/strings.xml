@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- //Vmax -->
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="anonymous_statistics_title">Статистика Vₘₐₓ</string>
+    <string name="anonymous_statistics_summary">Допоможіть зробити Vmax кращим, відправляючи анонімну статистику</string>
+    <string name="anonymous_statistics_warning">Анонімні звіти дозволяють розробникам Vmax відстежувати роботу ОС на різних пристроях. Інформація, що відправляється включає назву пристрою, версію прошивки і унікальний ідентифікатор, що ніяким чином не впливає на Вашу конфіденційність. Дані відправляються при кожному завантаженні пристрою.\n\nЩоб переглянути приклад, натисніть \"Попередній перегляд даних\".</string>
+</resources>
