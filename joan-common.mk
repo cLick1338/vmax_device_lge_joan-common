@@ -241,8 +241,6 @@ PRODUCT_PACKAGES += \
 
 # Panel colour modes are driven by the composer (Settings > Colors)
 $(call soong_config_set,livedisplay_lge,enable_dm,false)
-# Outdoor mode drives the panel boost bit (img_tune/boost_status)
-$(call soong_config_set,livedisplay_lge,enable_se,true)
 
 # Lineage Health
 PRODUCT_PACKAGES += \
