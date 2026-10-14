@@ -28,6 +28,7 @@
       "Name": "CPUBigClusterMaxFreq",
       "Path": "/sys/devices/system/cpu/cpu4/cpufreq/scaling_max_freq",
       "Values": [
+        "2457600",
         "2323200",
         "1958400",
         "1497600",
@@ -41,6 +42,7 @@
       "Name": "CPUBigClusterMinFreq",
       "Path": "/sys/devices/system/cpu/cpu4/cpufreq/scaling_min_freq",
       "Values": [
+        "2457600",
         "2323200",
         "1574400",
         "1497600",
@@ -208,7 +210,7 @@
       "PowerHint": "LAUNCH",
       "Node": "CPUBigClusterMaxFreq",
       "Duration": 1000,
-      "Value": "2323200"
+      "Value": "2457600"
     },
     {
       "PowerHint": "LAUNCH",
