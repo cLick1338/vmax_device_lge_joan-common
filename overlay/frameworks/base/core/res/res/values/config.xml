@@ -586,4 +586,7 @@
 
     <!-- Enable video pause workaround when enabling/disabling the camera. -->
      <bool name="config_useVideoPauseWorkaround">true</bool>
+
+    <!-- Disable flip to screen off; keeps FaceDownDetector off the accelerometer. -->
+    <bool name="config_flipToScreenOffEnabled">false</bool>
 </resources>
