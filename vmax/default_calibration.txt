@@ -1,10 +1,23 @@
-#Screen brightness as % | Darkest visible grayscale (1-255) with correction disabled
-#Example 20 15 means at 20% brightness, the test square of 15 brightness is the lowest visible
-#Suggest using http://www.lagom.nl/lcd-test/black.php or look up lagom.nl black level test
-0 44
-10 16
-20 15
-30 12
-40 8
-50 0
+# Brightness percent | Darkest visible gray
+0 28
+8 26
+9 23
+11 18
+14 15
+16 14
+20 13
+22 13
+23 14
+24 13
+25 12
+27 10
+29 8
+30 7
+34 6
+37 5
+41 4
+43 3
+45 2
+47 1
+48 0
 100 0
