@@ -85,6 +85,7 @@ vendor.voice.path.for.pcm.voip=false
 ro.hardware.audio_amplifier=lge
 
 # Audio - DAC
+persist.vendor.audio.hifi.enabled=true
 persist.vendor.lge.audio.handset_rx_type=DEFAULT
 persist.vendor.lge.audio.hifi_adv_support=1
 persist.vendor.lge.audio.nsenabled=ON
