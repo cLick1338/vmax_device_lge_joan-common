@@ -127,9 +127,16 @@ elif args[0] not in ('display', 'window'):
         self.run_cli("restore")
         self.assertEqual((self.root / "saved").read_text(), "1080x2160")
 
-    def test_no_saved_selection_does_not_change_display(self):
+    def test_no_saved_selection_defaults_to_full_hd(self):
         self.run_cli("restore")
-        self.assertEqual(len(self.commands()), 1)
+        self.assertEqual((self.root / "saved").read_text(), "1080x2160")
+        self.assertIn(["display", "set-user-preferred-display-mode", "1080", "2160", "0", "0"],
+                      self.commands())
+        self.assertEqual(self.wm_density(), "405")
+        self.run_cli("qhd")
+        self.run_cli("restore")
+        self.assertEqual((self.root / "saved").read_text(), "1440x2880")
+        self.assertEqual(self.wm_density(), "540")
 
     def wm_density(self):
         return (self.root / "wm_density").read_text()

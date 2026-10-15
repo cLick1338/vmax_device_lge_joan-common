@@ -706,13 +706,17 @@ static int cmd_restore_resolution(void) {
          * stale legacy file override a newer Settings or CLI selection. */
         f = fopen(RESOLUTION_PATH, "r");
         if (!f) {
-            if (errno == ENOENT) return 0; /* No preference saved yet. */
-            LOGE("could not read legacy resolution: %s", strerror(errno));
-            return 1;
+            if (errno != ENOENT) {
+                LOGE("could not read legacy resolution: %s", strerror(errno));
+                return 1;
+            }
+            //Default to FHD when neither Settings nor the legacy CLI has a saved choice.
+            strcpy(mode, "fhd");
+        } else {
+            count = fscanf(f, "%31s %c", mode, &extra);
+            read_error = ferror(f);
+            fclose(f);
         }
-        count = fscanf(f, "%31s %c", mode, &extra);
-        read_error = ferror(f);
-        fclose(f);
     }
 
     size_t i = count == 1 ? find_resolution(mode) : sizeof(RES_MODES) / sizeof(RES_MODES[0]);
@@ -727,7 +731,7 @@ static int cmd_restore_resolution(void) {
         return 1;
     }
     if (legacy && save_resolution(i) != 0) {
-        LOGE("restored legacy resolution but could not migrate it to Settings.Global");
+        LOGE("restored resolution but could not save it to Settings.Global");
         return 1;
     }
     LOGD("restored resolution %s", RES_MODES[i].name);
