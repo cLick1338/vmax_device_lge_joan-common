@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# Vmax
 """Test the real daemon loop with a fake panel and process-held POSIX locks."""
 
 import fcntl

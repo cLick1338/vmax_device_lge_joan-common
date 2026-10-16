@@ -1,3 +1,4 @@
+//Vmax
 /* vmaxdisplay - Panel Gamma Correction autodaemon
  Watches backlight level changes and applies precomputed DSPP PGC curves dictated by user-made calibration points.
  Calibration data is pairs of [display brightness percentage 0-100][darkest calibration square visible on 0-255 test squares]

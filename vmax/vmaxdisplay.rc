@@ -1,3 +1,4 @@
+# Vmax
 # Installed to /vendor/etc/init/vmaxdisplay.rc via Android.bp
 
 service vmaxdisplay /vendor/bin/vmaxdisplay

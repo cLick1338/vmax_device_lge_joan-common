@@ -1,3 +1,4 @@
+# Vmax
 type vmaxdisplay, domain;
 type vmaxdisplay_exec, exec_type, file_type, vendor_file_type;
 type vmaxdisplay_data_file, file_type, data_file_type;
