@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--Vmax: HDR brightness boost only; everything else falls back to config.xml -->
+<!--Vmax: sunlight HBM and HDR brightness boost only; everything else falls back to config.xml -->
 <displayConfiguration>
+    <!-- registers 252-255 (~557 -> ~593 nits) only above 10000 lux in auto mode; transition = b 179 (register 251) -->
+    <highBrightnessMode enabled="true">
+        <transitionPoint>0.700787</transitionPoint>
+        <minimumLux>10000</minimumLux>
+        <timing>
+            <timeWindowSecs>1800</timeWindowSecs>
+            <timeMaxSecs>600</timeMaxSecs>
+            <timeMinSecs>60</timeMinSecs>
+        </timing>
+        <allowInLowPowerMode>false</allowInLowPowerMode>
+    </highBrightnessMode>
     <hdrBrightnessConfig>
         <!-- no ambient-lux limits -->
         <brightnessMap/>
@@ -11,14 +22,14 @@
         <minimumHdrPercentOfScreenForNbm>0</minimumHdrPercentOfScreenForNbm>
         <minimumHdrPercentOfScreenForHbm>0</minimumHdrPercentOfScreenForHbm>
         <allowInLowPowerMode>false</allowInLowPowerMode>
-        <!-- 8x SDR nits: max backlight (~350 nits) from ~44 nits SDR up, capped below -->
+        <!-- 8x SDR nits up to the HBM top (~593 nits, from ~74 nits SDR up); HBM_HDR since both HDR minimums are 0 -->
         <sdrHdrRatioMap>
             <point>
-                <first>7.565</first>
+                <first>3.30</first>
                 <second>8.0</second>
             </point>
             <point>
-                <first>349.7</first>
+                <first>592.58</first>
                 <second>8.0</second>
             </point>
         </sdrHdrRatioMap>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <hdr_lib version= "2.0" >
 <panel_color_mode>   DCIP3 </panel_color_mode>
-<panel_max_luminance>   559   </panel_max_luminance>)
+<panel_max_luminance>   593   </panel_max_luminance>)
 <panel_min_luminance> 0.002     </panel_min_luminance>
 <nominal_peak_luminance> 1000  </nominal_peak_luminance>
 <output_gamma_space>
