@@ -34,14 +34,17 @@
     <!-- Vmax: register 255 (~593 nits); the slider stops at the HBM transition (register 251) -->
     <integer name="config_screenBrightnessSettingMaximum">207</integer>
 
+    <!-- Vmax: the backlight curve is ~b^2 in nits, so space brightness by nits for the gamma slider -->
+    <bool name="config_screenBrightnessLinearInNits">true</bool>
+
 
     <!-- Screen brightness used to dim the screen when the user activity
          timeout expires.  May be less than the minimum allowed brightness setting
          that can be set by the user. -->
     <integer name="config_screenBrightnessDim">29</integer>
 
-    <!-- Vmax: ~15 nits (b 32); this float overrides the int above -->
-    <item name="config_screenBrightnessDimFloat" format="float" type="dimen">0.1162</item>
+    <!-- Vmax: ~15 nits (b 32) in nits-linear brightness; this float overrides the int above -->
+    <item name="config_screenBrightnessDimFloat" format="float" type="dimen">0.0200</item>
 
     <!-- Screen brightness used to dim the screen while dozing in a very low power state.
          May be less than the minimum allowed brightness setting
@@ -53,7 +56,8 @@
 	
     <!-- Default screen brightness setting.
          Must be in the range specified by minimum and maximum. -->
-    <integer name="config_screenBrightnessSettingDefault">95</integer>
+    <!-- Vmax: brightness float 0.2441 = ~147 nits (b 82) in nits-linear brightness -->
+    <integer name="config_screenBrightnessSettingDefault">63</integer>
 
     <!-- Default screen brightness for VR setting. Default value: 0x8c => 140. -->
     <integer name="config_screenBrightnessForVrSettingDefault">140</integer>
