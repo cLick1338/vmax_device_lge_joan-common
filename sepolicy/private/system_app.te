@@ -1,1 +1,4 @@
 allow system_app storaged:binder { call };
+
+# Vmax
+set_prop(system_app, vmax_cpu_frequency_prop)

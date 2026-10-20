@@ -1,1 +1,4 @@
 system_public_prop(baseband_prop);
+
+# Vmax
+system_public_prop(vmax_cpu_frequency_prop);

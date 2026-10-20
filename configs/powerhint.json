@@ -4,12 +4,13 @@
       "Name": "CPULittleClusterMaxFreq",
       "Path": "/sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq",
       "Values": [
-        "1824000",
-        "1555200",
+        "1094400",
         "1478400",
-        "1094400"
+        "1555200",
+        "1824000",
+        "1900800"
       ],
-      "DefaultIndex": 0,
+      "DefaultIndex": 4,
       "ResetOnInit": true
     },
     {
@@ -28,14 +29,14 @@
       "Name": "CPUBigClusterMaxFreq",
       "Path": "/sys/devices/system/cpu/cpu4/cpufreq/scaling_max_freq",
       "Values": [
-        "2457600",
-        "2323200",
-        "1958400",
-        "1497600",
+        "1132800",
         "1344000",
-        "1132800"
+        "1497600",
+        "1958400",
+        "2323200",
+        "2457600"
       ],
-      "DefaultIndex": 0,
+      "DefaultIndex": 5,
       "ResetOnInit": true
     },
     {
@@ -146,6 +147,18 @@
     }
   ],
   "Actions": [
+    {
+      "PowerHint": "CPU_FREQUENCY_LIMIT",
+      "Node": "CPULittleClusterMaxFreq",
+      "Duration": 0,
+      "Value": "1824000"
+    },
+    {
+      "PowerHint": "CPU_FREQUENCY_LIMIT",
+      "Node": "CPUBigClusterMaxFreq",
+      "Duration": 0,
+      "Value": "2323200"
+    },
     {
       "PowerHint": "SUSTAINED_PERFORMANCE",
       "Node": "PowerHALMainState",

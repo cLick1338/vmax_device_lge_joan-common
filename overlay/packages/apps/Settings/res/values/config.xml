@@ -42,4 +42,5 @@
     <!-- Display size slider: default density follows the active resolution. -->
     <integer name="display_density_base_width">@integer/config_screenResolutionBaseWidth</integer>
 
+    <bool name="config_show_cpu_efficiency_mode">true</bool>
 </resources>
