@@ -10,7 +10,7 @@ vendor                                      /vendor                ext4    ro,ba
 odm                                         /odm                   ext4    ro,barrier=1,discard,i_version                                            wait,verify,logical,first_stage_mount
 /dev/block/bootdevice/by-name/boot          /boot                  emmc    defaults                                                                  defaults
 /dev/block/bootdevice/by-name/recovery      /recovery              emmc    defaults                                                                  defaults
-/dev/block/bootdevice/by-name/cache         /cache                 ext4    nosuid,nodev,barrier=1,noatime,noauto_da_alloc,errors=continue            wait,check,formattable
+/dev/block/bootdevice/by-name/cache         /cache                 ext4    nosuid,nodev,barrier=1,noatime,noauto_da_alloc,errors=continue            wait,check,formattable,first_stage_mount
 /dev/block/bootdevice/by-name/userdata      /data                  ext4    nosuid,nodev,barrier=1,noatime,noauto_da_alloc,errors=continue            latemount,wait,check,fileencryption=ice,formattable,reservedsize=128M
 /dev/block/bootdevice/by-name/persist       /mnt/vendor/persist    ext4    nosuid,nodev,barrier=1,noatime,noauto_da_alloc,errors=continue             wait,check,formattable
 /dev/block/bootdevice/by-name/modem         /vendor/firmware_mnt   vfat    ro,shortname=lower,uid=1000,gid=1000,dmask=227,fmask=337,context=u:object_r:firmware_file:s0    wait
