@@ -1,0 +1,4 @@
+<!-- Vmax -->
+<resources>
+    <bool name="def_fm_without_headset">true</bool>
+</resources>
