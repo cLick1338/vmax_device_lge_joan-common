@@ -1,0 +1,5 @@
+# Vmax
+on property:ro.persistent_properties.ready=true && property:persist.vendor.recovery_update_migrated=false
+    # Enable once after upgrading from the hidden recovery update option.
+    setprop persist.vendor.recovery_update true
+    setprop persist.vendor.recovery_update_migrated true

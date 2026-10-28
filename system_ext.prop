@@ -14,5 +14,9 @@ persist.log.tag.SDM=WARNING
 # Media volume: finer steps on the Quad DAC (AudioService + libaudiopolicymanagercustom)
 ro.config.media_vol_fine=true
 
+# Recovery updates
+persist.vendor.recovery_update=true
+persist.vendor.recovery_update_migrated=false
+
 # Java audio API validation: allow high-rate direct PCM and DoP128 carriers
 ro.audio.max_sample_rate=384000
