@@ -52,6 +52,7 @@ persist.sys.wfd.virtual=0
 ro.fastbootd.available=true
 
 # Media
+debug.vmax.vp9.hdr_fallback=true
 debug.vmax.vp9.uncached_output=1
 media.settings.xml=/vendor/etc/media_profiles_vendor.xml
 
